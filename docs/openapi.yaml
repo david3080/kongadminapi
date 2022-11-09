@@ -19,11 +19,6 @@ servers:
   - url: 'http://localhost:8001'
     description: localhost
 paths:
-  /:
-    get:
-      summary: Retrieve generic details about a node.
-      responses:
-
   /tags:
     get:
       summary: List Tags
