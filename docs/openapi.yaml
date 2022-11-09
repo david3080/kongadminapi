@@ -4,13 +4,26 @@ info:
   title: Kong3 Admin API
   license:
     name: Apache 2.0
-  description: ''
+  description:
+    Kong Gatewaycomes with an **internal** RESTful Admin API for administration purposes. Requests to the Admin API can be sent to any node in the cluster, and Kong will keep the configuration consistent across all nodes. 
+
+    - `8001` is the default port on which the Admin API listens.
+    
+    - `8444` is the default port for HTTPS traffic to the Admin API.
+
+    This API is designed for internal use and provides full control over Kong, so care should be taken when setting up Kong environments to avoid undue public exposure of this API.
+
   contact:
     name: 'Kong Community, Japan'
 servers:
   - url: 'http://localhost:8001'
     description: localhost
 paths:
+  /:
+    get:
+      summary: Retrieve generic details about a node.
+      responses:
+
   /tags:
     get:
       summary: List Tags
@@ -4564,11 +4577,5 @@ components:
           description: Number of successes to consider a target healthy.
   links: {}
   callbacks: {}
-  securitySchemes:
-    Kong-Admin-Token:
-      name: Kong-Admin-Token
-      type: apiKey
-      in: header
-      description: |
-        Kong Admin RBAC Token
+  securitySchemes: {}
 security: []
