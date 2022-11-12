@@ -89,7 +89,7 @@ paths:
           in: query
           name: tags
           description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
-      description: Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service
+      description: Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services
       operationId: list-services
     post:
       summary: Create Service
