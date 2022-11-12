@@ -1,0 +1,1769 @@
+openapi: 3.1.0
+info:
+  description: |-
+    Kong comes with an internal RESTful Admin API for administration purposes. Requests to the Admin API can be sent to any node in the cluster, and Kong will keep the configuration consistent across all nodes.
+
+    - 8001 is the default port on which the Admin API listens.
+    - 8444 is the default port for HTTPS traffic to the Admin API.
+
+    This API is designed for internal use and provides full control over Kong, so care should be taken when setting up Kong environments to avoid undue public exposure of this API.
+  contact:
+    url: 'https://github.com/Kong/kong'
+    name: Kong
+  version: 3.1.0
+  title: Kong Admin API
+  license:
+    url: 'https://github.com/Kong/kong/blob/master/LICENSE'
+    name: Apache 2.0
+  summary: Kong RESTful Admin API for administration purposes.
+servers:
+  - url: 'http://localhost:8001'
+    description: 8001 is the default port on which the Admin API listens.
+  - url: 'https://localhost:8444'
+    description: 8444 is the default port for HTTPS traffic to the Admin API.
+paths:
+  /services:
+    get:
+      summary: List Services
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Paginated list of service entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                        created_at: 1422386534
+                        updated_at: 1422386534
+                        name: my-service
+                        retries: 5
+                        protocol: http
+                        host: example.com
+                        port: 80
+                        path: /some_api
+                        connect_timeout: 60000
+                        write_timeout: 60000
+                        read_timeout: 60000
+                        tags:
+                          - user-level
+                          - low-priority
+                      - id: a5fb8d9b-a99d-40e9-9d35-72d42a62d83a
+                        created_at: 1422386534
+                        updated_at: 1422386534
+                        name: my-service
+                        retries: 5
+                        protocol: http
+                        host: example.com
+                        port: 80
+                        path: /another_api
+                        connect_timeout: 60000
+                        write_timeout: 60000
+                        read_timeout: 60000
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                    next: 'http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      description: Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service
+      operationId: list-services
+    post:
+      summary: Create Service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '201':
+          description: Service created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+      description: Create new service entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service
+      operationId: create-service
+      tags:
+        - Services
+      parameters: []
+  '/services/{service_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: service_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Service to view, modify, or delete.'
+    get:
+      summary: View Service
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Return specified service details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+      operationId: view-service
+      description: Returns specified service details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-1
+    put:
+      summary: Create or Update Service
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Service Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Service Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+      description: Create or Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service
+      operationId: create-or-update-service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+    patch:
+      summary: Update Service
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Service Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+                    client_certificate:
+                      id: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                    tls_verify: true
+                    tls_verify_depth: null
+                    ca_certificates:
+                      - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                      - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+                    enabled: true
+      description: Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-1
+      operationId: update-service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+    delete:
+      summary: Delete Service
+      tags:
+        - Services
+      responses:
+        '204':
+          description: No Content
+      description: Delete Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-1
+      operationId: delete-service
+  /certificates/{certificate_name_or_id}/services:
+    parameters:
+      - schema:
+          type: string
+        name: certificate_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Certificate to view list of services for.
+    get:
+      summary: List Services associated to a specific Certificate
+      tags:
+        - Certificate Services
+      responses:
+        '200':
+          description: Return paginated list of services associated to specific certificate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                        created_at: 1422386534
+                        updated_at: 1422386534
+                        name: my-service
+                        retries: 5
+                        protocol: http
+                        host: example.com
+                        port: 80
+                        path: /some_api
+                        connect_timeout: 60000
+                        write_timeout: 60000
+                        read_timeout: 60000
+                        tags:
+                          - user-level
+                          - low-priority
+                        client_certificate:
+                          id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+                    next: 'http://localhost:8001/certificates/51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+      operationId: view-services-by-certificate
+      description: Returns paginated list of services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services-associated-to-a-specific-certificate
+    post:
+      summary: Create Service associated to a specific Certificate
+      tags:
+        - Certificate Services
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '201':
+          description: Service created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+      operationId: create-service-by-certificate
+      description: Create new service entity associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service-associated-to-a-specific-certificate
+  '/certificates/{certificate_name_or_id}/services/{service_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: certificate_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Certificate to view, modify, or delete services.'
+      - schema:
+          type: string
+        name: service_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Certificate to view, modify, or delete services.'
+    get:
+      summary: View Service associated to a specific Certificate
+      tags:
+        - Certificate Services
+      responses:
+        '200':
+          description: Return service associated to specific certificate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+                    client_certificate:
+                      id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+      operationId: view-service-by-certificate
+      description: Returns services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-certificate
+    put:
+      summary: Create or Update Service for this Certificate
+      tags:
+        - Certificate Services
+      responses:
+        '200':
+          description: Service Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+                    client_certificate:
+                      id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+        '201':
+          description: Service Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+                    client_certificate:
+                      id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+      description: Create or Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-certificate
+      operationId: create-or-update-service-by-certificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+    patch:
+      summary: Update Service
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Service Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+                    client_certificate:
+                      id: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                    tls_verify: true
+                    tls_verify_depth: null
+                    ca_certificates:
+                      - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                      - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+                    enabled: true
+      description: Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-certificate
+      operationId: update-service-by-certificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+    delete:
+      summary: Delete Service by Certificate name / id
+      tags:
+        - Certificate Services
+      responses:
+        '204':
+          description: No Content
+      description: Delete Service by Certificate name/id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-associated-to-a-specific-certificate
+      operationId: delete-service-by-certificate
+  /routes/{route_name_or_id}/service:
+    parameters:
+      - schema:
+          type: string
+        name: route_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Route to view or modify services.
+    get:
+      summary: View Service associated to a specific Route
+      tags:
+        - Route Service
+      responses:
+        '200':
+          description: Return service associated to specific route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route:
+                      - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+      operationId: view-service-by-route
+      description: Returns service associated to specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-route
+    put:
+      summary: Create or Update Service for this Route
+      tags:
+        - Route Service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Service Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Service Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+      description: Create or Update Service by Route. See https://docs.konghq.com/gateway/latest/admin-api/#create-or-update-service-associated-to-a-specific-route
+      operationId: create-or-update-route-service
+    patch:
+      summary: Update Service for this Route
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Service Updated by Route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+                    client_certificate:
+                      id: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                    tls_verify: true
+                    tls_verify_depth: null
+                    ca_certificates:
+                      - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                      - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+                    enabled: true
+      description: Update Service by Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-route
+      operationId: update-route-service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+  /plugins/{plugin_id}/service:
+    parameters:
+      - schema:
+          type: string
+        name: plugin_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Plugin to view or modify services.
+    get:
+      summary: View Service associated to a specific Plugin
+      tags:
+        - Plugins
+      responses:
+        '200':
+          description: Return paginated list of services associated to specific plugin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesResponse'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+      operationId: view-services-by-plugin
+      description: Returns paginated list of services associated to specific plugin
+    put:
+      summary: Create or Update Service for this Plugin
+      tags:
+        - Plugins
+      responses:
+        '200':
+          description: Service Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Service Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+      description: Create or Update Service by Plugin
+      operationId: create-or-update-plugin-service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+    patch:
+      summary: Update Service for this Plugin
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Service Updated by Plugin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                Response Body:
+                  value:
+                    id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-service
+                    retries: 5
+                    protocol: http
+                    host: example.com
+                    port: 80
+                    path: /some_api
+                    connect_timeout: 60000
+                    write_timeout: 60000
+                    read_timeout: 60000
+                    tags:
+                      - user-level
+                      - low-priority
+                    client_certificate:
+                      id: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                    tls_verify: true
+                    tls_verify_depth: null
+                    ca_certificates:
+                      - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                      - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+                    enabled: true
+      description: Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin
+      operationId: update-plugin-service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-service
+                  url: 'http://example.com/some_api'
+                  tags:
+                    - user-level
+                    - low-priority
+components:
+  schemas:
+    Tag:
+      type: string
+      title: Tag
+      pattern: '^[A-Za-z-_\.~].*$'
+      description: Individual tag value
+      x-examples: {}
+    Tags:
+      title: Tags
+      type: array
+      items:
+        x-examples: {}
+        description: Individual tag value
+        pattern: '^[A-Za-z-_\.~].*$'
+        title: Tag
+        type: string
+      description: List of tag values
+      x-examples: {}
+    Service:
+      title: Service Object
+      type: object
+      description: |-
+        Service entities, as the name implies, are abstractions of each of your own upstream services. Examples of Services would be a data transformation microservice, a billing API, etc.
+
+        The main attribute of a Service is its URL (where Kong should proxy traffic to), which can be set as a single string or by specifying its protocol, host, port and path individually.
+
+        Services are associated to Routes (a Service can have many Routes associated with it). Routes are entry-points in Kong and define rules to match client requests. Once a Route is matched, Kong proxies the request to its associated Service. See the Proxy Reference for a detailed explanation of how Kong proxies traffic.
+
+        Services can be both tagged and filtered by tags.
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: integer
+          format: int32
+        updated_at:
+          type: integer
+          format: int32
+        name:
+          type: string
+          description: Service Name (a-z-_)
+          example: my-service
+          pattern: '^[a-z-_]+'
+        retries:
+          type: number
+          description: The number of retries to execute upon failure to proxy.
+          default: 5
+        protocol:
+          type: string
+          description: The protocol used to communicate with the upstream.
+          enum:
+            - http
+            - https
+            - grpc
+            - grpcs
+            - tcp
+            - tls
+          default: http
+        host:
+          type: string
+          description: The host of the upstream server.
+        port:
+          type: number
+          description: The port of the upstream server.
+        path:
+          type: string
+          example: /some_api
+          pattern: ^\/(.*)+
+          description: The path to be used in requests to the upstream server.
+        connect_timeout:
+          type: number
+          example: 60000
+          description: The timeout in milliseconds for establishing a connection to the upstream server.
+        write_timeout:
+          type: number
+          example: 60000
+          description: The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.
+        read_timeout:
+          type: number
+          example: 60000
+          description: The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.
+        tags:
+          $ref: '#/components/schemas/Tags'
+        client_certificate:
+          type: object
+          description: Certificate to be used as client certificate while TLS handshaking to the upstream server.
+          properties:
+            id:
+              type: string
+        tls_verify:
+          type: boolean
+        tls_verify_depth:
+          type: integer
+          nullable: true
+      x-examples:
+        Entity:
+          id: 9748f662-7711-4a90-8186-dc02f10eb0f5
+          created_at: 1422386534
+          updated_at: 1422386534
+          name: my-service
+          retries: 5
+          protocol: http
+          host: example.com
+          port: 80
+          path: /some_api
+          connect_timeout: 60000
+          write_timeout: 60000
+          read_timeout: 60000
+          tags:
+            - user-level
+            - low-priority
+          client_certificate:
+            id: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+          tls_verify: true
+          tls_verify_depth: null
+          ca_certificates:
+            - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+            - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+          enabled: true
+    ServiceRequest:
+      title: Service Request Body
+      type: object
+      x-examples:
+        Request Body:
+          name: my-service
+          url: 'http://example.com/some_api'
+          tags:
+            - user-level
+            - low-priority
+      description: 'Service entities, as the name implies, are abstractions of each of your own upstream services.'
+      properties:
+        name:
+          type: string
+          description: Service Name (a-z-_)
+          example: my-service
+          pattern: '^[a-z-_]+'
+        retries:
+          type: number
+          description: The number of retries to execute upon failure to proxy.
+        connect_timeout:
+          type: number
+          example: 60000
+          description: The timeout in milliseconds for establishing a connection to the upstream server.
+        write_timeout:
+          type: number
+          example: 60000
+          description: The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.
+        read_timeout:
+          type: number
+          example: 60000
+          description: The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.
+        tags:
+          $ref: '#/components/schemas/Tags'
+        client_certificate:
+          type: object
+          description: Certificate to be used as client certificate while TLS handshaking to the upstream server.
+          properties:
+            id:
+              type: string
+        url:
+          type: string
+          description: 'Shorthand attribute to set protocol, host, port and path at once.'
+          example: 'http://example.com/some_api'
+      required:
+        - url
+    ServicesResponse:
+      title: Services Response
+      type: object
+      description: Paginated list of Service entities
+      properties:
+        next:
+          type: string
+        offset:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+      x-examples:
+        Response Body:
+          data:
+            - id: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+              created_at: 1422386534
+              updated_at: 1422386534
+              name: my-service
+              retries: 5
+              protocol: http
+              host: example.com
+              port: 80
+              path: /some_api
+              connect_timeout: 60000
+              write_timeout: 60000
+              read_timeout: 60000
+              tags:
+                - user-level
+                - low-priority
+              client_certificate:
+                id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+              tls_verify: true
+              tls_verify_depth: null
+              ca_certificates:
+                - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+              enabled: true
+            - id: a5fb8d9b-a99d-40e9-9d35-72d42a62d83a
+              created_at: 1422386534
+              updated_at: 1422386534
+              name: my-service
+              retries: 5
+              protocol: http
+              host: example.com
+              port: 80
+              path: /another_api
+              connect_timeout: 60000
+              write_timeout: 60000
+              read_timeout: 60000
+              tags:
+                - admin
+                - high-priority
+                - critical
+              client_certificate:
+                id: 4506673d-c825-444c-a25b-602e3c2ec16e
+              tls_verify: true
+              tls_verify_depth: null
+              ca_certificates:
+                - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
+                - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+              enabled: true
+          next: 'http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    Route:
+      title: Route Entity
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
+        service:
+          type: object
+          description: The Service this Route is associated to.
+          properties:
+            id:
+              type: string
+        tags:
+          $ref: '#/components/schemas/Tags'
+        preserve_host:
+          type: boolean
+          example: false
+          description: 'When matching a Route via one of the hosts domain names, use the request Host header in the upstream request headers.'
+        strip_path:
+          type: boolean
+          default: true
+          description: 'When matching a Route via one of the paths, strip the matching prefix from the upstream request URL. '
+          example: true
+        regex_priority:
+          type: integer
+          default: 0
+          description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same regex_priority, the older one (lowest created_at) is used.'
+          example: 0
+        https_redirect_status_code:
+          type: integer
+          default: 426
+          description: The status code Kong responds with when all properties of a Route match except the protocol
+          example: 426
+        paths:
+          type: array
+          description: A list of paths that match this Route.
+          items:
+            type: string
+        hosts:
+          type: array
+          description: A list of domain names that match this Route.
+          items:
+            type: string
+        methods:
+          type: array
+          description: A list of HTTP methods that match this Route.
+          items:
+            type: string
+        protocols:
+          type: array
+          default:
+            - http
+            - https
+          description: A list of the protocols this Route should allow.
+          items:
+            type: string
+            enum:
+              - http
+              - https
+        name:
+          type: string
+          pattern: '^[a-z-_]+'
+          example: my-route
+          description: The name of the Route.
+        updated_at:
+          type: integer
+          example: 1422386534
+        created_at:
+          type: integer
+          example: 1422386534
+        snis:
+          description: 'A list of SNIs that match this Route when using stream routing. When using tcp or tls protocols, at least one of snis, sources, or destinations must be set.'
+          type: array
+          items:
+            type: string
+        sources:
+          type: array
+          description: 'A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”. When using tcp or tls protocols, at least one of snis, sources, or destinations must be set.'
+        destinations:
+          type: array
+          description: 'A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”. When using tcp or tls protocols, at least one of snis, sources, or destinations must be set.'
+      x-examples:
+        HOSTS:
+          id: 4506673d-c825-444c-a25b-602e3c2ec16e
+          created_at: 1422386534
+          updated_at: 1422386534
+          name: my-route
+          protocols:
+            - http
+            - https
+          methods:
+            - GET
+            - POST
+          hosts:
+            - example.com
+            - foo.test
+          paths:
+            - /foo
+            - /bar
+          https_redirect_status_code: 426
+          regex_priority: 0
+          strip_path: true
+          preserve_host: false
+          tags:
+            - user-level
+            - low-priority
+          service:
+            id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+        SNIS:
+          id: af8330d3-dbdc-48bd-b1be-55b98608834b
+          created_at: 1422386534
+          updated_at: 1422386534
+          name: my-route
+          protocols:
+            - tcp
+            - tls
+          https_redirect_status_code: 426
+          regex_priority: 0
+          strip_path: true
+          preserve_host: false
+          snis:
+            - foo.test
+            - example.com
+          sources:
+            - ip: 10.1.0.0/16
+              port: 1234
+            - ip: 10.2.2.2
+            - port: 9123
+          destinations:
+            - ip: 10.1.0.0/16
+              port: 1234
+            - ip: 10.2.2.2
+            - port: 9123
+          tags:
+            - admin
+            - high-priority
+            - critical
+          service:
+            id: a9daa3ba-8186-4a0d-96e8-00d80ce7240b
+      description: Route entities define rules to match client requests.
+    RouteRequest:
+      title: RouteRequest
+      type: object
+      description: Request body to create a Route entity
+      x-examples:
+        HOSTS:
+          name: my-route
+          protocols:
+            - http
+            - https
+          methods:
+            - GET
+            - POST
+          hosts:
+            - example.com
+            - foo.test
+          paths:
+            - /foo
+            - /bar
+          https_redirect_status_code: 426
+          regex_priority: 0
+          strip_path: true
+          preserve_host: false
+          tags:
+            - user-level
+            - low-priority
+          service:
+            id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+        SNIS:
+          name: my-route
+          protocols:
+            - tcp
+            - tls
+          https_redirect_status_code: 426
+          regex_priority: 0
+          strip_path: true
+          preserve_host: false
+          snis:
+            - foo.test
+            - example.com
+          sources:
+            - ip: 10.1.0.0/16
+              port: 1234
+            - ip: 10.2.2.2
+            - port: 9123
+          destinations:
+            - ip: 10.1.0.0/16
+              port: 1234
+            - ip: 10.2.2.2
+            - port: 9123
+          tags:
+            - admin
+            - high-priority
+            - critical
+          service:
+            name: my-name
+      properties:
+        destinations:
+          type: array
+          description: 'A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”. When using tcp or tls protocols, at least one of snis, sources, or destinations must be set.'
+        sources:
+          type: array
+          description: 'A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”. When using tcp or tls protocols, at least one of snis, sources, or destinations must be set.'
+        snis:
+          description: 'A list of SNIs that match this Route when using stream routing. When using tcp or tls protocols, at least one of snis, sources, or destinations must be set.'
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          pattern: '^[a-z-_]+'
+          example: my-route
+          description: The name of the Route.
+        protocols:
+          type: array
+          default:
+            - http
+            - https
+          description: A list of the protocols this Route should allow.
+          items:
+            type: string
+            enum:
+              - http
+              - https
+        methods:
+          type: array
+          description: A list of HTTP methods that match this Route.
+          items:
+            type: string
+        hosts:
+          type: array
+          description: A list of domain names that match this Route.
+          items:
+            type: string
+        paths:
+          type: array
+          description: A list of paths that match this Route.
+          items:
+            type: string
+        https_redirect_status_code:
+          type: integer
+          default: 426
+          description: The status code Kong responds with when all properties of a Route match except the protocol
+          example: 426
+        regex_priority:
+          type: integer
+          default: 0
+          description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same regex_priority, the older one (lowest created_at) is used.'
+          example: 0
+        strip_path:
+          type: boolean
+          default: true
+          description: 'When matching a Route via one of the paths, strip the matching prefix from the upstream request URL. '
+          example: true
+        preserve_host:
+          type: boolean
+          example: false
+          description: 'When matching a Route via one of the hosts domain names, use the request Host header in the upstream request headers.'
+        tags:
+          $ref: '#/components/schemas/Tags'
+        service:
+          type: object
+          description: The Service this Route is associated to (by either id or name).
+          properties:
+            id:
+              type: string
+              example: fc73f2af-890d-4f9b-8363-af8945001f7f
+              description: Service Identifier
+            name:
+              type: string
+              description: Service Name
+    RoutesResponse:
+      title: Routes Response
+      type: object
+      x-examples:
+        Response Body:
+          data:
+            - id: 4506673d-c825-444c-a25b-602e3c2ec16e
+              created_at: 1422386534
+              updated_at: 1422386534
+              name: my-route
+              protocols:
+                - http
+                - https
+              methods:
+                - GET
+                - POST
+              hosts:
+                - example.com
+                - foo.test
+              paths:
+                - /foo
+                - /bar
+              https_redirect_status_code: 426
+              regex_priority: 0
+              strip_path: true
+              preserve_host: false
+              tags:
+                - user-level
+                - low-priority
+              service:
+                id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+            - id: af8330d3-dbdc-48bd-b1be-55b98608834b
+              created_at: 1422386534
+              updated_at: 1422386534
+              name: my-route
+              protocols:
+                - tcp
+                - tls
+              https_redirect_status_code: 426
+              regex_priority: 0
+              strip_path: true
+              preserve_host: false
+              snis:
+                - foo.test
+                - example.com
+              sources:
+                - ip: 10.1.0.0/16
+                  port: 1234
+                - ip: 10.2.2.2
+                - port: 9123
+              destinations:
+                - ip: 10.1.0.0/16
+                  port: 1234
+                - ip: 10.2.2.2
+                - port: 9123
+              tags:
+                - admin
+                - high-priority
+                - critical
+              service:
+                id: a9daa3ba-8186-4a0d-96e8-00d80ce7240b
+          next: 'http://localhost:8001/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+        offset:
+          type: string
+        next:
+          type: string
+      description: Paginated list of route entities
+    Certificate:
+      title: Certificate Entity
+      type: object
+      x-examples:
+        Entity:
+          id: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          created_at: 1422386534
+          cert: '-----BEGIN CERTIFICATE-----...'
+          key: '-----BEGIN RSA PRIVATE KEY-----...'
+          tags:
+            - user-level
+            - low-priority
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: number
+        cert:
+          type: string
+          description: PEM-encoded public certificate of the SSL key pair.
+        key:
+          type: string
+          description: PEM-encoded private key of the SSL key pair.
+        tags:
+          $ref: '#/components/schemas/Tags'
+      description: 'A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames.'
+    CertificateRequest:
+      title: Certificate Request
+      type: object
+      properties:
+        id:
+          type: string
+    CertificatesResponse:
+      title: Certificates Response
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certificate'
+        offset:
+          type: string
+        next:
+          type: string
+      x-examples:
+        Response Body:
+          data:
+            - id: 02621eee-8309-4bf6-b36b-a82017a5393e
+              created_at: 1422386534
+              cert: '-----BEGIN CERTIFICATE-----...'
+              key: '-----BEGIN RSA PRIVATE KEY-----...'
+              tags:
+                - user-level
+                - low-priority
+            - id: 66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4
+              created_at: 1422386534
+              cert: '-----BEGIN CERTIFICATE-----...'
+              key: '-----BEGIN RSA PRIVATE KEY-----...'
+              tags:
+                - admin
+                - high-priority
+                - critical
+          next: 'http://localhost:8001/certificates?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+      description: Paginated list of Certificate entities
+    Plugin:
+      title: Plugin Entity
+      type: object
+      description: A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins apply additional functionalities and policies such as Rate Limiting / Authentication to incoming requests to Kong.
+      x-examples:
+        Entity:
+          id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+          name: rate-limiting
+          created_at: 1422386534
+          route: null
+          service: null
+          consumer: null
+          config:
+            hour: 500
+            minute: 20
+          run_on: first
+          protocols:
+            - http
+            - https
+          enabled: true
+          tags:
+            - user-level
+            - low-priority
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: The name of the Plugin that’s going to be added. The Plugin must be installed in every Kong instance in the cluster.
+          pattern: '^[A-Za-z-_]+$'
+        route:
+          type: object
+          description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
+          allOf:
+            - properties:
+                id:
+                  type: string
+                  format: uuid
+          nullable: true
+          default: null
+        service:
+          type: object
+          description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
+          allOf:
+            - properties:
+                id:
+                  type: string
+                  format: uuid
+          nullable: true
+          default: null
+        consumer:
+          type: object
+          description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.'
+          allOf:
+            - properties:
+                id:
+                  type: string
+                  format: uuid
+          nullable: true
+          default: null
+        config:
+          type: object
+          description: The configuration properties for the Plugin which can be found on the plugins documentation page in the Kong Hub.
+        run_on:
+          type: string
+          default: first
+          description: 'Control on which Kong nodes this plugin will run, given a Service Mesh scenario.'
+          enum:
+            - first
+            - second
+            - all
+        protocols:
+          type: array
+          items:
+            type: string
+            enum:
+              - http
+              - https
+        enabled:
+          type: boolean
+          default: true
+          description: Whether the plugin is applied to matching requests.
+        tags:
+          $ref: '#/components/schemas/Tags'
+        created_at:
+          type: number
+      required:
+        - name
+    PluginRequest:
+      title: Plugin Request
+      type: object
+      properties:
+        tags:
+          $ref: '#/components/schemas/Tags'
+        enabled:
+          type: boolean
+          description: Whether the plugin is applied to matching requests.
+          default: true
+        protocols:
+          type: array
+          items:
+            type: string
+            enum:
+              - http
+              - https
+        run_on:
+          type: string
+          enum:
+            - first
+            - second
+            - all
+          description: 'Control on which Kong nodes this plugin will run, given a Service Mesh scenario.'
+          default: first
+        config:
+          type: object
+          description: The configuration properties for the Plugin which can be found on the plugins documentation page in the Kong Hub.
+        consumer:
+          type: object
+          description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.'
+          allOf:
+            - properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+          nullable: true
+          default: null
+        service:
+          type: object
+          description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
+          allOf:
+            - properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+          nullable: true
+          default: null
+        route:
+          type: object
+          description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
+          allOf:
+            - properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+          nullable: true
+          default: null
+        name:
+          type: string
+          pattern: '^[A-Za-z-_]+$'
+          description: The name of the Plugin that’s going to be added. The Plugin must be installed in every Kong instance in the cluster.
+      x-examples:
+        REQUEST:
+          name: rate-limiting
+          config:
+            hour: 500
+            minute: 20
+          tags:
+            - user-level
+            - low-priority
+      description: Create / Update Request
+    PluginsResponse:
+      title: PluginsResponse
+      type: object
+      description: Paginated List of Plugin entities
+      x-examples:
+        Response Body:
+          data:
+            - id: a4407883-c166-43fd-80ca-3ca035b0cdb7
+              name: rate-limiting
+              created_at: 1422386534
+              route: null
+              service: null
+              consumer: null
+              config:
+                hour: 500
+                minute: 20
+              run_on: first
+              protocols:
+                - http
+                - https
+              enabled: true
+              tags:
+                - user-level
+                - low-priority
+            - id: 01c23299-839c-49a5-a6d5-8864c09184af
+              name: rate-limiting
+              created_at: 1422386534
+              route: null
+              service: null
+              consumer: null
+              config:
+                hour: 500
+                minute: 20
+              run_on: first
+              protocols:
+                - tcp
+                - tls
+              enabled: true
+              tags:
+                - admin
+                - high-priority
+                - critical
+          next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+      properties:
+        next:
+          type: string
+        offset:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plugin'
+tags:
+  - name: Tags
+  - name: Services
+  - name: Certificate Services
+  - name: Service Route
+  - name: Routes
+  - name: Service Routes
+  - name: Route Service
+  - name: Consumers
+  - name: Plugins
+  - name: Certificates
+  - name: CA Certificates
+  - name: SNIs
+  - name: Upstreams
+  - name: Upstream Targets
