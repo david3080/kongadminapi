@@ -1,5 +1,7 @@
 # Open API Spec V3.1 of Admin Kong OSS V3
 
+[Kong Admin APIドキュメント](https://david3080.github.io/kongadminapi)
+
 以下を参考に作成しています
 - [Kong GWのオフィシャルGithubサイトに置いてある中途半端なOASファイル](https://github.com/Kong/kong/blob/master/kong-admin-api.yml)
 - [Kongのオフィシャルドキュメント上のAdmin APIサイト](https://docs.konghq.com/gateway/3.0.x/admin-api)
