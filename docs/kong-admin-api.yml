@@ -408,7 +408,7 @@ paths:
     get:
       summary: View Service associated to a specific Certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '200':
           description: Return service associated to specific certificate
@@ -441,7 +441,7 @@ paths:
     put:
       summary: Create or Update Service for this Certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '200':
           description: Service Updated
@@ -513,7 +513,7 @@ paths:
     patch:
       summary: Update Service
       tags:
-        - Services
+        - Certificate Service
       responses:
         '200':
           description: Service Updated
@@ -565,7 +565,7 @@ paths:
     delete:
       summary: Delete Service by Certificate name / id
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '204':
           description: No Content
@@ -744,7 +744,7 @@ paths:
     get:
       summary: View Service associated to a specific Plugin
       tags:
-        - Plugins
+        - Plugin Service
       responses:
         '200':
           description: Return paginated list of services associated to specific plugin
@@ -775,7 +775,7 @@ paths:
     put:
       summary: Create or Update Service for this Plugin
       tags:
-        - Plugins
+        - Plugin Service
       responses:
         '200':
           description: Service Updated
@@ -843,7 +843,7 @@ paths:
     patch:
       summary: Update Service for this Plugin
       tags:
-        - Services
+        - Plugin Service
       responses:
         '200':
           description: Service Updated by Plugin
