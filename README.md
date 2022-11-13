@@ -11,3 +11,14 @@
 - 対象オブジェクトは、Service、Route、Consumer、Plugin、Certificate、CACertificate、SNI、Upstreamの順
 - HTTPメソッドは、GET、POST、PUT、PATCH、DELETEの順
 - OAS1ファイル上ではpathのURIは重複できないためKongオフィシャルドキュメントのパス順ではなく、操作対象のオブジェクトごとに整理しています
+
+# Kong GW OSS V3 + PostgreSQLのdocker-compose.yml
+
+上述のKong Admin APIドキュメントから「try it」を実行して学習するための環境です。
+
+以下を参考に作成しています。
+
+https://github.com/Kong/demo-scene/tree/main/kong-docker/postgres
+
+Certificate周りは以下のブログに整理されています。
+https://konghq.com/blog/mutual-tls-api-gateway
