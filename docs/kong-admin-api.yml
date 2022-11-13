@@ -408,7 +408,7 @@ paths:
     get:
       summary: View Service associated to a specific Certificate
       tags:
-        - Certificate Service
+        - Certificate Services
       responses:
         '200':
           description: Return service associated to specific certificate
@@ -441,7 +441,7 @@ paths:
     put:
       summary: Create or Update Service for this Certificate
       tags:
-        - Certificate Service
+        - Certificate Services
       responses:
         '200':
           description: Service Updated
@@ -513,7 +513,7 @@ paths:
     patch:
       summary: Update Service
       tags:
-        - Certificate Service
+        - Certificate Services
       responses:
         '200':
           description: Service Updated
@@ -565,7 +565,7 @@ paths:
     delete:
       summary: Delete Service by Certificate name / id
       tags:
-        - Certificate Service
+        - Certificate Services
       responses:
         '204':
           description: No Content
