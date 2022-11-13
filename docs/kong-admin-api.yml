@@ -25,8 +25,29 @@ paths:
   /services:
     get:
       summary: List Services
+      description: Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services
+      operationId: list-services
       tags:
         - Services
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
       responses:
         '200':
           description: Paginated list of service entities
@@ -70,29 +91,13 @@ paths:
                           - high-priority
                           - critical
                     next: 'http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: offset
-          description: Cursor used for pagination
-        - schema:
-            type: number
-            maximum: 1000
-            minimum: 1
-            default: 100
-          in: query
-          name: size
-          description: A limit on the number of objects to be returned per page.
-        - schema:
-            type: string
-          in: query
-          name: tags
-          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
-      description: Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services
-      operationId: list-services
     post:
       summary: Create Service
+      description: Create new service entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service
+      operationId: create-service
+      tags:
+        - Services
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -131,11 +136,6 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      description: Create new service entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service
-      operationId: create-service
-      tags:
-        - Services
-      parameters: []
   '/services/{service_name_or_id}':
     parameters:
       - schema:
@@ -146,6 +146,8 @@ paths:
         description: 'The unique identifier or the name of the Service to view, modify, or delete.'
     get:
       summary: View Service
+      description: Returns specified service details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-1
+      operationId: view-service
       tags:
         - Services
       responses:
@@ -173,10 +175,10 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      operationId: view-service
-      description: Returns specified service details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-1
     put:
       summary: Create or Update Service
+      description: Create or Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service
+      operationId: create-or-update-service
       tags:
         - Services
       responses:
@@ -228,8 +230,6 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      description: Create or Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service
-      operationId: create-or-update-service
       requestBody:
         content:
           application/json:
@@ -245,6 +245,8 @@ paths:
                     - low-priority
     patch:
       summary: Update Service
+      description: Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-1
+      operationId: update-service
       tags:
         - Services
       responses:
@@ -280,8 +282,6 @@ paths:
                       - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
                       - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
                     enabled: true
-      description: Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-1
-      operationId: update-service
       requestBody:
         content:
           application/json:
@@ -297,13 +297,13 @@ paths:
                     - low-priority
     delete:
       summary: Delete Service
+      description: Delete Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-1
+      operationId: delete-service
       tags:
         - Services
       responses:
         '204':
           description: No Content
-      description: Delete Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-1
-      operationId: delete-service
   /certificates/{certificate_name_or_id}/services:
     parameters:
       - schema:
@@ -314,6 +314,8 @@ paths:
         description: The unique identifier or the name of the Certificate to view list of services for.
     get:
       summary: List Services associated to a specific Certificate
+      description: Returns paginated list of services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services-associated-to-a-specific-certificate
+      operationId: view-services-by-certificate
       tags:
         - Certificate Services
       responses:
@@ -345,10 +347,10 @@ paths:
                         client_certificate:
                           id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
                     next: 'http://localhost:8001/certificates/51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
-      operationId: view-services-by-certificate
-      description: Returns paginated list of services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services-associated-to-a-specific-certificate
     post:
       summary: Create Service associated to a specific Certificate
+      description: Create new service entity associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service-associated-to-a-specific-certificate
+      operationId: create-service-by-certificate
       tags:
         - Certificate Services
       requestBody:
@@ -389,8 +391,6 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      operationId: create-service-by-certificate
-      description: Create new service entity associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service-associated-to-a-specific-certificate
   '/certificates/{certificate_name_or_id}/services/{service_name_or_id}':
     parameters:
       - schema:
@@ -407,6 +407,8 @@ paths:
         description: 'The unique identifier or the name of the Certificate to view, modify, or delete services.'
     get:
       summary: View Service associated to a specific Certificate
+      description: Returns services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-certificate
+      operationId: view-service-by-certificate
       tags:
         - Certificate Services
       responses:
@@ -436,10 +438,10 @@ paths:
                       - low-priority
                     client_certificate:
                       id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
-      operationId: view-service-by-certificate
-      description: Returns services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-certificate
     put:
       summary: Create or Update Service for this Certificate
+      description: Create or Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-certificate
+      operationId: create-or-update-service-by-certificate
       tags:
         - Certificate Services
       responses:
@@ -495,8 +497,6 @@ paths:
                       - low-priority
                     client_certificate:
                       id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
-      description: Create or Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-certificate
-      operationId: create-or-update-service-by-certificate
       requestBody:
         content:
           application/json:
@@ -512,6 +512,8 @@ paths:
                     - low-priority
     patch:
       summary: Update Service
+      description: Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-certificate
+      operationId: update-service-by-certificate
       tags:
         - Certificate Services
       responses:
@@ -547,8 +549,6 @@ paths:
                       - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
                       - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
                     enabled: true
-      description: Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-certificate
-      operationId: update-service-by-certificate
       requestBody:
         content:
           application/json:
@@ -564,13 +564,13 @@ paths:
                     - low-priority
     delete:
       summary: Delete Service by Certificate name / id
+      description: Delete Service by Certificate name/id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-associated-to-a-specific-certificate
+      operationId: delete-service-by-certificate
       tags:
         - Certificate Services
       responses:
         '204':
           description: No Content
-      description: Delete Service by Certificate name/id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-associated-to-a-specific-certificate
-      operationId: delete-service-by-certificate
   /routes/{route_name_or_id}/service:
     parameters:
       - schema:
@@ -581,6 +581,8 @@ paths:
         description: The unique identifier or the name of the Route to view or modify services.
     get:
       summary: View Service associated to a specific Route
+      description: Returns service associated to specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-route
+      operationId: view-service-by-route
       tags:
         - Route Service
       responses:
@@ -611,10 +613,10 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      operationId: view-service-by-route
-      description: Returns service associated to specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-route
     put:
       summary: Create or Update Service for this Route
+      description: Create or Update Service by Route. See https://docs.konghq.com/gateway/latest/admin-api/#create-or-update-service-associated-to-a-specific-route
+      operationId: create-or-update-route-service
       tags:
         - Route Service
       requestBody:
@@ -679,12 +681,12 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      description: Create or Update Service by Route. See https://docs.konghq.com/gateway/latest/admin-api/#create-or-update-service-associated-to-a-specific-route
-      operationId: create-or-update-route-service
     patch:
       summary: Update Service for this Route
+      description: Update Service by Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-route
+      operationId: update-route-service
       tags:
-        - Services
+        - Route Service
       responses:
         '200':
           description: Service Updated by Route
@@ -718,8 +720,6 @@ paths:
                       - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
                       - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
                     enabled: true
-      description: Update Service by Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-route
-      operationId: update-route-service
       requestBody:
         content:
           application/json:
@@ -743,6 +743,8 @@ paths:
         description: The unique identifier or the name of the Plugin to view or modify services.
     get:
       summary: View Service associated to a specific Plugin
+      description: Returns paginated list of services associated to specific plugin
+      operationId: view-services-by-plugin
       tags:
         - Plugin Service
       responses:
@@ -770,10 +772,10 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      operationId: view-services-by-plugin
-      description: Returns paginated list of services associated to specific plugin
     put:
       summary: Create or Update Service for this Plugin
+      description: Create or Update Service by Plugin
+      operationId: create-or-update-plugin-service
       tags:
         - Plugin Service
       responses:
@@ -825,8 +827,6 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      description: Create or Update Service by Plugin
-      operationId: create-or-update-plugin-service
       requestBody:
         content:
           application/json:
@@ -842,6 +842,8 @@ paths:
                     - low-priority
     patch:
       summary: Update Service for this Plugin
+      description: Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin
+      operationId: update-plugin-service
       tags:
         - Plugin Service
       responses:
@@ -877,8 +879,6 @@ paths:
                       - 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
                       - 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
                     enabled: true
-      description: Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin
-      operationId: update-plugin-service
       requestBody:
         content:
           application/json:
@@ -1756,10 +1756,11 @@ tags:
   - name: Tags
   - name: Services
   - name: Certificate Services
-  - name: Service Route
-  - name: Routes
-  - name: Service Routes
+  - name: Plugin Service
   - name: Route Service
+  - name: Routes
+  - name: Service Route
+  - name: Service Routes
   - name: Consumers
   - name: Plugins
   - name: Certificates
