@@ -28,7 +28,7 @@ paths:
       description: Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services
       operationId: list-services
       tags:
-        - Services
+        - Service
       parameters:
         - schema:
             type: string
@@ -96,8 +96,7 @@ paths:
       description: Create new service entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service
       operationId: create-service
       tags:
-        - Services
-      parameters: []
+        - Service
       requestBody:
         content:
           application/json:
@@ -149,7 +148,7 @@ paths:
       description: Returns specified service details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-1
       operationId: view-service
       tags:
-        - Services
+        - Service
       responses:
         '200':
           description: Return specified service details
@@ -180,7 +179,7 @@ paths:
       description: Create or Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service
       operationId: create-or-update-service
       tags:
-        - Services
+        - Service
       responses:
         '200':
           description: Service Updated
@@ -248,7 +247,7 @@ paths:
       description: Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-1
       operationId: update-service
       tags:
-        - Services
+        - Service
       responses:
         '200':
           description: Service Updated
@@ -300,7 +299,7 @@ paths:
       description: Delete Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-1
       operationId: delete-service
       tags:
-        - Services
+        - Service
       responses:
         '204':
           description: No Content
@@ -317,7 +316,7 @@ paths:
       description: Returns paginated list of services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services-associated-to-a-specific-certificate
       operationId: view-services-by-certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '200':
           description: Return paginated list of services associated to specific certificate
@@ -352,7 +351,7 @@ paths:
       description: Create new service entity associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service-associated-to-a-specific-certificate
       operationId: create-service-by-certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       requestBody:
         content:
           application/json:
@@ -410,7 +409,7 @@ paths:
       description: Returns services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-certificate
       operationId: view-service-by-certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '200':
           description: Return service associated to specific certificate
@@ -443,7 +442,7 @@ paths:
       description: Create or Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-certificate
       operationId: create-or-update-service-by-certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '200':
           description: Service Updated
@@ -515,7 +514,7 @@ paths:
       description: Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-certificate
       operationId: update-service-by-certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '200':
           description: Service Updated
@@ -567,7 +566,7 @@ paths:
       description: Delete Service by Certificate name/id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-associated-to-a-specific-certificate
       operationId: delete-service-by-certificate
       tags:
-        - Certificate Services
+        - Certificate Service
       responses:
         '204':
           description: No Content
@@ -892,6 +891,2784 @@ paths:
                   tags:
                     - user-level
                     - low-priority
+  /routes:
+    get:
+      summary: List Routes
+      description: Returns a paginated list of routes
+      operationId: list-routes
+      tags:
+        - Route
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      responses:
+        '200':
+          description: Paginated list of route entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                        created_at: 1422386534
+                        updated_at: 1422386534
+                        name: my-route
+                        protocols:
+                          - http
+                          - https
+                        methods:
+                          - GET
+                          - POST
+                        hosts:
+                          - example.com
+                          - foo.test
+                        paths:
+                          - /foo
+                          - /bar
+                        https_redirect_status_code: 426
+                        regex_priority: 0
+                        strip_path: true
+                        preserve_host: false
+                        tags:
+                          - user-level
+                          - low-priority
+                        service:
+                          id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+                      - id: af8330d3-dbdc-48bd-b1be-55b98608834b
+                        created_at: 1422386534
+                        updated_at: 1422386534
+                        name: my-route
+                        protocols:
+                          - http
+                          - https
+                        https_redirect_status_code: 426
+                        regex_priority: 0
+                        strip_path: true
+                        preserve_host: false
+                        snis:
+                          - foo.test
+                          - example.com
+                        sources:
+                          - ip: 10.1.0.0/16
+                            port: 1234
+                          - ip: 10.2.2.2
+                          - port: 9123
+                        destinations:
+                          - ip: 10.1.0.0/16
+                            port: 1234
+                          - ip: 10.2.2.2
+                          - port: 9123
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                        service:
+                          id: a9daa3ba-8186-4a0d-96e8-00d80ce7240b
+                    next: 'http://localhost:8001/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    post:
+      summary: Create Route
+      description: Create new route entity
+      operationId: create-route
+      tags:
+        - Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              HOST REQUEST:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  tags:
+                    - user-level
+                    - low-priority
+                  service:
+                    id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+              SNIS REQUEST:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  snis:
+                    - foo.test
+                    - example.com
+                  sources:
+                    - ip: 10.1.0.0/16
+                      port: 1234
+                    - ip: 10.2.2.2
+                    - port: 9123
+                  destinations:
+                    - ip: 10.1.0.0/16
+                      port: 1234
+                    - ip: 10.2.2.2
+                    - port: 9123
+                  tags:
+                    - admin
+                    - high-priority
+                    - critical
+                  service:
+                    name: my-name
+      responses:
+        '201':
+          description: Route created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                HOSTS:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+                SNIS:
+                  value:
+                    id: af8330d3-dbdc-48bd-b1be-55b98608834b
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    snis:
+                      - foo.test
+                      - example.com
+                    sources:
+                      - ip: 10.1.0.0/16
+                        port: 1234
+                      - ip: 10.2.2.2
+                      - port: 9123
+                    destinations:
+                      - ip: 10.1.0.0/16
+                        port: 1234
+                      - ip: 10.2.2.2
+                      - port: 9123
+                    tags:
+                      - admin
+                      - high-priority
+                      - critical
+                    service:
+                      id: a9daa3ba-8186-4a0d-96e8-00d80ce7240b
+  '/routes/{route_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: route_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Route to view, modify, or delete.'
+    get:
+      summary: View Route
+      description: Returns specified route details
+      operationId: view-route
+      tags:
+        - Route
+      responses:
+        '200':
+          description: Return specified route details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    put:
+      summary: Create or Update Route
+      description: Create or Update Route
+      operationId: create-or-update-route
+      tags:
+        - Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  tags:
+                    - user-level
+                    - low-priority
+                  service:
+                    id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+      responses:
+        '200':
+          description: Route Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+        '201':
+          description: Route Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    patch:
+      summary: Update Route
+      description: Update Route
+      operationId: update-route
+      tags:
+        - Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  tags:
+                    - user-level
+                    - low-priority
+                  service:
+                    id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+      responses:
+        '200':
+          description: Route Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    delete:
+      summary: Delete Route
+      description: Delete Route
+      operationId: delete-route
+      tags:
+        - Route
+      responses:
+        '204':
+          description: No Content
+  '/services/{service_name_or_id}/routes':
+    parameters:
+      - schema:
+          type: string
+        name: service_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Service to view, modify, or delete.'
+    get:
+      summary: List Routes for specified Service Name / Id
+      description: Returns a paginated list of routes for specified service id
+      operationId: list-routes-by-service-name-or-id
+      tags:
+        - Service Route
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      responses:
+        '200':
+          description: Paginated list of route entities for specified service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                        created_at: 1422386534
+                        updated_at: 1422386534
+                        name: my-route
+                        protocols:
+                          - http
+                          - https
+                        methods:
+                          - GET
+                          - POST
+                        hosts:
+                          - example.com
+                          - foo.test
+                        paths:
+                          - /foo
+                          - /bar
+                        https_redirect_status_code: 426
+                        regex_priority: 0
+                        strip_path: true
+                        preserve_host: false
+                        tags:
+                          - user-level
+                          - low-priority
+                        service:
+                          id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+                      - id: af8330d3-dbdc-48bd-b1be-55b98608834b
+                        created_at: 1422386534
+                        updated_at: 1422386534
+                        name: my-route
+                        protocols:
+                          - http
+                          - https
+                        https_redirect_status_code: 426
+                        regex_priority: 0
+                        strip_path: true
+                        preserve_host: false
+                        snis:
+                          - foo.test
+                          - example.com
+                        sources:
+                          - ip: 10.1.0.0/16
+                            port: 1234
+                          - ip: 10.2.2.2
+                          - port: 9123
+                        destinations:
+                          - ip: 10.1.0.0/16
+                            port: 1234
+                          - ip: 10.2.2.2
+                          - port: 9123
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                        service:
+                          id: a9daa3ba-8186-4a0d-96e8-00d80ce7240b
+                    next: 'http://localhost:8001/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    post:
+      summary: Create Route associated to specific Service
+      description: Create new route entity
+      operationId: create-route-by-service
+      tags:
+        - Service Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-route
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '201':
+          description: Route created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+  '/services/{service_name_or_id}/routes/{route_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: service_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Service associated to the specified route.
+      - schema:
+          type: string
+        name: route_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Route to view, modify, or delete.'
+    get:
+      summary: View Route associated with specified Service
+      description: Returns specified route details
+      operationId: view-route-by-service
+      tags:
+        - Service Route
+      responses:
+        '200':
+          description: Return specified route details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    put:
+      summary: Create or Update Route by Service
+      description: Create or Update Route by Service
+      operationId: create-or-update-route-by-service
+      tags:
+        - Service Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  tags:
+                    - user-level
+                    - low-priority
+                  service:
+                    id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+      responses:
+        '200':
+          description: Route Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+        '201':
+          description: Route Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    patch:
+      summary: Update Route by Service
+      description: Update Route by Service
+      operationId: update-route-by-service
+      tags:
+        - Service Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  tags:
+                    - user-level
+                    - low-priority
+                  service:
+                    id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+      responses:
+        '200':
+          description: Route Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    delete:
+      summary: Delete Route associated to specified Service
+      description: Delete Route associated to specified Service
+      operationId: delete-route-by-service
+      tags:
+        - Service Route
+      responses:
+        '204':
+          description: No Content
+  /plugins/{plugin_id}/route:
+    parameters:
+      - schema:
+          type: string
+        name: plugin_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Plugin to view or modify route.
+    get:
+      summary: View Route associated with specified Plugin
+      description: Returns specified route details
+      operationId: view-route-by-plugin
+      tags:
+        - Plugin Route
+      responses:
+        '200':
+          description: Return specified route details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    put:
+      summary: Create or Update Route by Plugin
+      description: Create or Update Route by Plugin
+      operationId: create-or-update-route-by-plugin
+      tags:
+        - Plugin Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  tags:
+                    - user-level
+                    - low-priority
+                  service:
+                    id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+      responses:
+        '200':
+          description: Route Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+        '201':
+          description: Route Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+    patch:
+      summary: Update Route by Plugin
+      description: Update Route by Plugin
+      operationId: update-route-by-plugin
+      tags:
+        - Plugin Route
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              Request Body:
+                value:
+                  name: my-route
+                  protocols:
+                    - http
+                    - https
+                  methods:
+                    - GET
+                    - POST
+                  hosts:
+                    - example.com
+                    - foo.test
+                  paths:
+                    - /foo
+                    - /bar
+                  https_redirect_status_code: 426
+                  regex_priority: 0
+                  strip_path: true
+                  preserve_host: false
+                  tags:
+                    - user-level
+                    - low-priority
+                  service:
+                    id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+      responses:
+        '200':
+          description: Route Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+              examples:
+                Response Body:
+                  value:
+                    id: 4506673d-c825-444c-a25b-602e3c2ec16e
+                    created_at: 1422386534
+                    updated_at: 1422386534
+                    name: my-route
+                    protocols:
+                      - http
+                      - https
+                    methods:
+                      - GET
+                      - POST
+                    hosts:
+                      - example.com
+                      - foo.test
+                    paths:
+                      - /foo
+                      - /bar
+                    https_redirect_status_code: 426
+                    regex_priority: 0
+                    strip_path: true
+                    preserve_host: false
+                    tags:
+                      - user-level
+                      - low-priority
+                    service:
+                      id: d35165e2-d03e-461a-bdeb-dad0a112abfe
+  /consumers:
+    get:
+      summary: List Consumers
+      tags:
+        - Consumer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumersResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: 9aa116fd-ef4a-4efa-89bf-a0b17c4be982
+                        created_at: 1422386534
+                        username: my-username
+                        custom_id: my-custom-id
+                        tags:
+                          - user-level
+                          - low-priority
+                      - id: ba641b07-e74a-430a-ab46-94b61e5ea66b
+                        created_at: 1422386534
+                        username: my-username
+                        custom_id: my-custom-id
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                    next: 'http://localhost:8001/consumers?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      operationId: list-consumers
+      description: Returns a paginated list of consumers
+    post:
+      summary: Create Consumer
+      responses:
+        '201':
+          description: Consumer Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+      operationId: create-consumer
+      description: Create new consumer entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerRequest'
+            examples:
+              Request Body:
+                value:
+                  username: my-username
+                  custom_id: my-custom-id
+                  tags:
+                    - user-level
+                    - low-priority
+      tags:
+        - Consumer
+  '/consumers/{consumer_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: consumer_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Consumer to view, modify, or delete.'
+    get:
+      summary: View Consumer
+      tags:
+        - Consumer
+      responses:
+        '200':
+          description: Return specified consumer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+      operationId: view-consumer
+      description: Returns specified consumer details
+    put:
+      summary: Create or Update Consumer
+      tags:
+        - Consumer
+      responses:
+        '200':
+          description: Consumer Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Consumer Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+      description: Create or Update Consumer
+      operationId: create-or-update-consumer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerRequest'
+            examples:
+              Request Body:
+                value:
+                  username: my-username
+                  custom_id: my-custom-id
+                  tags:
+                    - user-level
+                    - low-priority
+    delete:
+      summary: Delete Consumer
+      description: Delete Consumer
+      tags:
+        - Consumer
+      responses:
+        '204':
+          description: No Content
+      operationId: delete-consumer
+  '/plugins/{plugin_name_or_id}/consumer':
+    parameters:
+      - schema:
+          type: string
+        name: plugin_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Plugin to view or modify its Consumer.'
+    get:
+      summary: View Consumer associated to specific plugin
+      description: Returns specified consumer details associated to specific plugin
+      operationId: retrieve-consumer-associated-to-a-specific-plugin
+      tags:
+        - Plugin Consumer
+      responses:
+        '200':
+          description: Return specified consumer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+    put:
+      summary: Create or Update Consumer associated to specific plugin
+      description: Create or Update Consumer associated to specific plugin
+      operationId: create-or-update-consumer-associated-to-a-specific-plugin
+      tags:
+        - Plugin Consumer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerRequest'
+            examples:
+              Request Body:
+                value:
+                  username: my-username
+                  custom_id: my-custom-id
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Consumer Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Consumer Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+    patch:
+      summary: Update Consumer associated to specific plugin
+      description: Update Consumer associated to specific plugin
+      operationId: update-consumer-associated-to-a-specific-plugin
+      tags:
+        - Plugin Consumer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerRequest'
+            examples:
+              Request Body:
+                value:
+                  username: my-username
+                  custom_id: my-custom-id
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Consumer Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
+  /plugins:
+    get:
+      summary: List Plugins
+      description: Returns a paginated list of plugins
+      operationId: list-plugins
+      tags:
+        - Plugin
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      responses:
+        '200':
+          description: Paginated list of plugin entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginsResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: a4407883-c166-43fd-80ca-3ca035b0cdb7
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - user-level
+                          - low-priority
+                      - id: 01c23299-839c-49a5-a6d5-8864c09184af
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                    next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    post:
+      summary: Create Plugin
+      description: Create new plugin entity
+      operationId: create-plugin
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '201':
+          description: Plugin created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+  '/plugins/{plugin_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: plugin_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
+    get:
+      summary: View Plugin
+      description: Returns specified plugin details
+      operationId: view-plugin
+      tags:
+        - Plugin
+      responses:
+        '200':
+          description: Return specified plugin details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    put:
+      summary: Create or Update Plugin
+      description: Create or Update Plugin
+      operationId: create-or-update-plugin
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Plugin Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    patch:
+      summary: Update Plugin
+      description: Update Plugin
+      operationId: update-plugin
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    delete:
+      summary: Delete Plugin
+      description: Delete Plugin
+      tags:
+        - Plugin
+      responses:
+        '204':
+          description: No Content
+      operationId: delete-plugin
+  '/services/{service_name_or_id}/plugins':
+    parameters:
+      - schema:
+          type: string
+        name: service_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Service.
+    get:
+      summary: List Plugins associated to a specific service
+      description: Returns a paginated list of plugins associated to a specific service
+      operationId: list-plugins-associated-to-a-specific-service
+      tags:
+        - Plugin
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      responses:
+        '200':
+          description: Paginated list of plugin entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginsResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: a4407883-c166-43fd-80ca-3ca035b0cdb7
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - user-level
+                          - low-priority
+                      - id: 01c23299-839c-49a5-a6d5-8864c09184af
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                    next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    post:
+      summary: Create Plugin to a specific service
+      description: Create new plugin entity to a specific service
+      operationId: create-plugin-associated-to-a-specific-service
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '201':
+          description: Plugin created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+  '/services/{service_name_or_id}/plugins/{plugin_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: service_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Service.
+      - schema:
+          type: string
+        name: plugin_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Plugin to view, modify, or delete.
+    get:
+      summary: View Plugin to the specified route
+      description: Returns specified plugin details to the specified route
+      operationId: retrieve-plugin-associated-to-a-specific-service
+      tags:
+        - Plugin
+      responses:
+        '200':
+          description: Return specified plugin details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    put:
+      summary: Create or Update Plugin to the specified route
+      description: Create or Update Plugin to the specified route
+      operationId: create-or-update-plugin-associated-to-a-specific-service
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Plugin Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    patch:
+      summary: Update Plugin
+      description: Update Plugin to a specific service
+      operationId: update-plugin-associated-to-a-specific-service
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    delete:
+      summary: Delete Plugin to a specific service
+      description: Delete Plugin to a specific service
+      operationId: delete-plugin-associated-to-a-specific-service
+      tags:
+        - Plugin
+      responses:
+        '204':
+          description: No Content
+  '/routes/{route_name_or_id}/plugins':
+    parameters:
+      - schema:
+          type: string
+        name: route_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Route.
+    get:
+      summary: List Plugins associated to a specific route
+      description: Returns a paginated list of plugins associated to a specific route
+      operationId: list-plugins-associated-to-a-specific-route
+      tags:
+        - Plugin
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      responses:
+        '200':
+          description: Paginated list of plugin entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginsResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: a4407883-c166-43fd-80ca-3ca035b0cdb7
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - user-level
+                          - low-priority
+                      - id: 01c23299-839c-49a5-a6d5-8864c09184af
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                    next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    post:
+      summary: Create Plugin to a specific route
+      description: Create new plugin entity to a specific route
+      operationId: create-plugin-associated-to-a-specific-route
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '201':
+          description: Plugin created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+  '/routes/{route_name_or_id}/plugins/{plugin_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: route_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Route.
+      - schema:
+          type: string
+        name: plugin_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Plugin to view, modify, or delete.
+    get:
+      summary: View Plugin to the specified route
+      description: Returns specified plugin details to the specified route
+      operationId: retrieve-plugin-associated-to-a-specific-route
+      tags:
+        - Plugin
+      responses:
+        '200':
+          description: Return specified plugin details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    put:
+      summary: Create or Update Plugin to the specified route
+      description: Create or Update Plugin to the specified route
+      operationId: create-or-update-plugin-associated-to-a-specific-route
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Plugin Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    patch:
+      summary: Update Plugin
+      description: Update Plugin to a specific route
+      operationId: update-plugin-associated-to-a-specific-route
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    delete:
+      summary: Delete Plugin to a specific route
+      description: Delete Plugin to a specific route
+      operationId: delete-plugin-associated-to-a-specific-route
+      tags:
+        - Plugin
+      responses:
+        '204':
+          description: No Content
+  '/consumers/{consumer_name_or_id}/plugins':
+    parameters:
+      - schema:
+          type: string
+        name: consumer_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Consumer.
+    get:
+      summary: List Plugins associated to a specific consumer
+      description: Returns a paginated list of plugins associated to a specific consumer
+      operationId: list-plugins-associated-to-a-specific-consumer
+      tags:
+        - Plugin
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      responses:
+        '200':
+          description: Paginated list of plugin entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginsResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: a4407883-c166-43fd-80ca-3ca035b0cdb7
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - user-level
+                          - low-priority
+                      - id: 01c23299-839c-49a5-a6d5-8864c09184af
+                        name: rate-limiting
+                        created_at: 1422386534
+                        route: null
+                        service: null
+                        consumer: null
+                        config:
+                          hour: 500
+                          minute: 20
+                        run_on: first
+                        protocols:
+                          - http
+                          - https
+                        enabled: true
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                    next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    post:
+      summary: Create Plugin to a specific consumer
+      description: Create new plugin entity to a specific consumer
+      operationId: create-plugin-associated-to-a-specific-consumer
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '201':
+          description: Plugin created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+  '/consumers/{consumer_name_or_id}/plugins/{plugin_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: consumer_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Consumer.
+      - schema:
+          type: string
+        name: plugin_name_or_id
+        in: path
+        required: true
+        description: The unique identifier or the name of the Plugin to view, modify, or delete.
+    get:
+      summary: View Plugin to the specified consumer
+      description: Returns specified plugin details to the specified consumer
+      operationId: retrieve-plugin-associated-to-a-specific-consumer
+      tags:
+        - Plugin
+      responses:
+        '200':
+          description: Return specified plugin details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    put:
+      summary: Create or Update Plugin to the specified consumer
+      description: Create or Update Plugin to the specified consumer
+      operationId: create-or-update-plugin-associated-to-a-specific-consumer
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Plugin Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    patch:
+      summary: Update Plugin
+      description: Update Plugin to a specific consumer
+      operationId: update-plugin-associated-to-a-specific-consumer
+      tags:
+        - Plugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginRequest'
+            examples:
+              Request Body:
+                value:
+                  name: rate-limiting
+                  config:
+                    hour: 500
+                    minute: 20
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Plugin Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+              examples:
+                Response Body:
+                  value:
+                    id: ec1a1f6f-2aa4-4e58-93ff-b56368f19b27
+                    name: rate-limiting
+                    created_at: 1422386534
+                    route: null
+                    service: null
+                    consumer: null
+                    config:
+                      hour: 500
+                      minute: 20
+                    run_on: first
+                    protocols:
+                      - http
+                      - https
+                    enabled: true
+                    tags:
+                      - user-level
+                      - low-priority
+    delete:
+      summary: Delete Plugin to a specific consumer
+      description: Delete Plugin to a specific consumer
+      operationId: delete-plugin-associated-to-a-specific-consumer
+      tags:
+        - Plugin
+      responses:
+        '204':
+          description: No Content
+  /certificates:
+    get:
+      summary: List Certificates
+      description: Returns a paginated list of certificates
+      operationId: list-certificates
+      tags:
+        - Certificate
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Cursor used for pagination
+        - schema:
+            type: number
+            maximum: 1000
+            minimum: 1
+            default: 100
+          in: query
+          name: size
+          description: A limit on the number of objects to be returned per page.
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
+      responses:
+        '200':
+          description: Paginated list of certificate entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificatesResponse'
+              examples:
+                Response Body:
+                  value:
+                    data:
+                      - id: 02621eee-8309-4bf6-b36b-a82017a5393e
+                        created_at: 1422386534
+                        cert: '-----BEGIN CERTIFICATE-----...'
+                        key: '-----BEGIN RSA PRIVATE KEY-----...'
+                        tags:
+                          - user-level
+                          - low-priority
+                      - id: 66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4
+                        created_at: 1422386534
+                        cert: '-----BEGIN CERTIFICATE-----...'
+                        key: '-----BEGIN RSA PRIVATE KEY-----...'
+                        tags:
+                          - admin
+                          - high-priority
+                          - critical
+                    next: 'http://localhost:8001/certificates?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+    post:
+      summary: Create Certificate
+      description: Create new certificate entity
+      operationId: create-certificate
+      tags:
+        - Certificate
+      responses:
+        '201':
+          description: Certificate Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+              examples:
+                Response Body:
+                  value:
+                    id: 7fca84d6-7d37-4a74-a7b0-93e576089a41
+                    created_at: 1422386534
+                    cert: '-----BEGIN CERTIFICATE-----...'
+                    key: '-----BEGIN RSA PRIVATE KEY-----...'
+                    tags:
+                      - user-level
+                      - low-priority
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateRequest'
+            examples:
+              Request Body:
+                value:
+                  cert: '-----BEGIN CERTIFICATE-----...'
+                  key: '-----BEGIN RSA PRIVATE KEY-----...'
+                  tags:
+                    - user-level
+                    - low-priority
+  '/certificates/{certificate_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: certificate_name_or_id
+        in: path
+        required: true
+        description: 'The unique identifier or the name of the Certificate to view, modify, or delete.'
+    get:
+      summary: View Certificate
+      description: Returns specified certificate details
+      operationId: view-certificate
+      tags:
+        - Certificate
+      responses:
+        '200':
+          description: Return specified certificate details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+              examples:
+                Response Body:
+                  value:
+                    id: 7fca84d6-7d37-4a74-a7b0-93e576089a41
+                    created_at: 1422386534
+                    cert: '-----BEGIN CERTIFICATE-----...'
+                    key: '-----BEGIN RSA PRIVATE KEY-----...'
+                    tags:
+                      - user-level
+                      - low-priority
+    put:
+      summary: Create or Update Certificate
+      description: Create or Update Certificate
+      operationId: create-or-update-certificate
+      tags:
+        - Certificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateRequest'
+            examples:
+              Request Body:
+                value:
+                  cert: '-----BEGIN CERTIFICATE-----...'
+                  key: '-----BEGIN RSA PRIVATE KEY-----...'
+                  tags:
+                    - user-level
+                    - low-priority
+      responses:
+        '200':
+          description: Certificate Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+              examples:
+                Response Body:
+                  value:
+                    id: 7fca84d6-7d37-4a74-a7b0-93e576089a41
+                    created_at: 1422386534
+                    cert: '-----BEGIN CERTIFICATE-----...'
+                    key: '-----BEGIN RSA PRIVATE KEY-----...'
+                    tags:
+                      - user-level
+                      - low-priority
+        '201':
+          description: Certificate Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+              examples:
+                Response Body:
+                  value:
+                    id: 7fca84d6-7d37-4a74-a7b0-93e576089a41
+                    created_at: 1422386534
+                    cert: '-----BEGIN CERTIFICATE-----...'
+                    key: '-----BEGIN RSA PRIVATE KEY-----...'
+                    tags:
+                      - user-level
+                      - low-priority
+    delete:
+      summary: Delete Certificate
+      description: Delete Certificate
+      operationId: delete-certificate
+      tags:
+        - Certificate
+      responses:
+        '204':
+          description: No Content
 components:
   schemas:
     Tag:
@@ -1468,6 +4245,82 @@ components:
         next:
           type: string
       description: Paginated list of route entities
+    Consumer:
+      title: Consumer Entity
+      type: object
+      description: The Consumer object represents a consumer - or a user - of a Service.
+      properties:
+        id:
+          type: string
+        created_at:
+          type: number
+        username:
+          type: string
+        custom_id:
+          type: string
+        tags:
+          $ref: '#/components/schemas/Tags'
+      x-examples:
+        Entity:
+          id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+          created_at: 1422386534
+          username: my-username
+          custom_id: my-custom-id
+          tags:
+            - user-level
+            - low-priority
+    ConsumerRequest:
+      title: Consumer Request
+      type: object
+      description: Create / Update Request Entity
+      properties:
+        username:
+          type: string
+        custom_id:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+      x-examples:
+        Request:
+          username: my-username
+          custom_id: my-custom-id
+          tags:
+            - user-level
+            - low-priority
+    ConsumersResponse:
+      title: Consumers Response
+      type: object
+      x-examples:
+        Response Body:
+          data:
+            - id: 9aa116fd-ef4a-4efa-89bf-a0b17c4be982
+              created_at: 1422386534
+              username: my-username
+              custom_id: my-custom-id
+              tags:
+                - user-level
+                - low-priority
+            - id: ba641b07-e74a-430a-ab46-94b61e5ea66b
+              created_at: 1422386534
+              username: my-username
+              custom_id: my-custom-id
+              tags:
+                - admin
+                - high-priority
+                - critical
+          next: 'http://localhost:8001/consumers?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
+      description: Paginated list of Consumer entities
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Consumer'
+        offset:
+          type: string
+        next:
+          type: string
     Certificate:
       title: Certificate Entity
       type: object
@@ -1753,18 +4606,18 @@ components:
           items:
             $ref: '#/components/schemas/Plugin'
 tags:
-  - name: Tags
-  - name: Services
-  - name: Certificate Services
+  - name: Tag
+  - name: Service
+  - name: Certificate Service
   - name: Plugin Service
   - name: Route Service
-  - name: Routes
+  - name: Route
   - name: Service Route
-  - name: Service Routes
-  - name: Consumers
-  - name: Plugins
-  - name: Certificates
-  - name: CA Certificates
-  - name: SNIs
-  - name: Upstreams
-  - name: Upstream Targets
+  - name: Plugin Route
+  - name: Consumer
+  - name: Plugin Consumer
+  - name: Plugin
+  - name: Certificate
+  - name: SNI
+  - name: Upstream
+  - name: Upstream Targetrget
