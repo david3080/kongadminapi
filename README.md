@@ -29,3 +29,8 @@ $ docker-compose up -d
 ```
 
 証明書が不正ですが、https(443ポート)でKong APIにアクセスでき、8001ポートでKong Admin APIにアクセスできるように設定してあります。
+
+PostgreSQLのボリュームを削除して開始したい場合は下記のコマンドを実行します。
+```
+$ docker volume rm kongadminapi_kong-db-data
+```

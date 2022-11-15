@@ -25,7 +25,7 @@ paths:
   /services:
     get:
       summary: List Services
-      description: Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services
+      description: 'Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services'
       operationId: list-services
       tags:
         - Service
@@ -93,7 +93,7 @@ paths:
                     next: 'http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Service
-      description: Create new service entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service
+      description: 'Create new service entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service'
       operationId: create-service
       tags:
         - Service
@@ -135,7 +135,7 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /services/{service_name_or_id}:
+  '/services/{service_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -145,8 +145,8 @@ paths:
         description: 'The unique identifier or the name of the Service to view, modify, or delete.'
     get:
       summary: View Service
-      description: Returns specified service details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-1
-      operationId: view-service
+      description: 'Returns specified service details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-1'
+      operationId: retrieve-service
       tags:
         - Service
       responses:
@@ -176,7 +176,7 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Service
-      description: Create or Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service
+      description: 'Create or Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service'
       operationId: create-or-update-service
       tags:
         - Service
@@ -244,7 +244,7 @@ paths:
                     - low-priority
     patch:
       summary: Update Service
-      description: Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-1
+      description: 'Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-1'
       operationId: update-service
       tags:
         - Service
@@ -296,14 +296,14 @@ paths:
                     - low-priority
     delete:
       summary: Delete Service
-      description: Delete Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-1
+      description: 'Delete Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-1'
       operationId: delete-service
       tags:
         - Service
       responses:
         '204':
           description: No Content
-  /certificates/{certificate_name_or_id}/services:
+  '/certificates/{certificate_name_or_id}/services':
     parameters:
       - schema:
           type: string
@@ -313,8 +313,8 @@ paths:
         description: The unique identifier or the name of the Certificate to view list of services for.
     get:
       summary: List Services associated to a specific Certificate
-      description: Returns paginated list of services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services-associated-to-a-specific-certificate
-      operationId: view-services-by-certificate
+      description: 'Returns paginated list of services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services-associated-to-a-specific-certificate'
+      operationId: list-services-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
@@ -348,8 +348,8 @@ paths:
                     next: 'http://localhost:8001/certificates/51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Service associated to a specific Certificate
-      description: Create new service entity associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service-associated-to-a-specific-certificate
-      operationId: create-service-by-certificate
+      description: 'Create new service entity associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service-associated-to-a-specific-certificate'
+      operationId: create-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       requestBody:
@@ -390,7 +390,7 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /certificates/{certificate_name_or_id}/services/{service_name_or_id}:
+  '/certificates/{certificate_name_or_id}/services/{service_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -406,7 +406,7 @@ paths:
         description: 'The unique identifier or the name of the Certificate to view, modify, or delete services.'
     get:
       summary: View Service associated to a specific Certificate
-      description: Returns services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-certificate
+      description: 'Returns services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-certificate'
       operationId: view-service-by-certificate
       tags:
         - Certificate Service
@@ -439,8 +439,8 @@ paths:
                       id: 51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515
     put:
       summary: Create or Update Service for this Certificate
-      description: Create or Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-certificate
-      operationId: create-or-update-service-by-certificate
+      description: 'Create or Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-certificate'
+      operationId: create-or-update-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
@@ -511,8 +511,8 @@ paths:
                     - low-priority
     patch:
       summary: Update Service
-      description: Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-certificate
-      operationId: update-service-by-certificate
+      description: 'Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-certificate'
+      operationId: update-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
@@ -563,14 +563,14 @@ paths:
                     - low-priority
     delete:
       summary: Delete Service by Certificate name / id
-      description: Delete Service by Certificate name/id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-associated-to-a-specific-certificate
-      operationId: delete-service-by-certificate
+      description: 'Delete Service by Certificate name/id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-associated-to-a-specific-certificate'
+      operationId: delete-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
         '204':
           description: No Content
-  /routes/{route_name_or_id}/service:
+  '/routes/{route_name_or_id}/service':
     parameters:
       - schema:
           type: string
@@ -580,8 +580,8 @@ paths:
         description: The unique identifier or the name of the Route to view or modify services.
     get:
       summary: View Service associated to a specific Route
-      description: Returns service associated to specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-route
-      operationId: view-service-by-route
+      description: 'Returns service associated to specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-route'
+      operationId: retrieve-service-associated-to-a-specific-route
       tags:
         - Route Service
       responses:
@@ -614,8 +614,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Service for this Route
-      description: Create or Update Service by Route. See https://docs.konghq.com/gateway/latest/admin-api/#create-or-update-service-associated-to-a-specific-route
-      operationId: create-or-update-route-service
+      description: 'Create or Update Service by Route. See https://docs.konghq.com/gateway/latest/admin-api/#create-or-update-service-associated-to-a-specific-route'
+      operationId: create-or-update-service-associated-to-a-specific-route
       tags:
         - Route Service
       requestBody:
@@ -682,8 +682,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Service for this Route
-      description: Update Service by Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-route
-      operationId: update-route-service
+      description: 'Update Service by Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-route'
+      operationId: update-service-associated-to-a-specific-route
       tags:
         - Route Service
       responses:
@@ -732,7 +732,7 @@ paths:
                   tags:
                     - user-level
                     - low-priority
-  /plugins/{plugin_id}/service:
+  '/plugins/{plugin_id}/service':
     parameters:
       - schema:
           type: string
@@ -742,8 +742,8 @@ paths:
         description: The unique identifier or the name of the Plugin to view or modify services.
     get:
       summary: View Service associated to a specific Plugin
-      description: Returns paginated list of services associated to specific plugin
-      operationId: view-services-by-plugin
+      description: 'Returns paginated list of services associated to specific plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-associated-to-a-specific-plugin'
+      operationId: retrieve-route-associated-to-a-specific-plugin
       tags:
         - Plugin Service
       responses:
@@ -773,8 +773,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Service for this Plugin
-      description: Create or Update Service by Plugin
-      operationId: create-or-update-plugin-service
+      description: 'Create or Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route-associated-to-a-specific-plugin'
+      operationId: create-or-update-route-associated-to-a-specific-plugin
       tags:
         - Plugin Service
       responses:
@@ -841,8 +841,8 @@ paths:
                     - low-priority
     patch:
       summary: Update Service for this Plugin
-      description: Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin
-      operationId: update-plugin-service
+      description: 'Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin'
+      operationId: update-service-associated-to-a-specific-plugin
       tags:
         - Plugin Service
       responses:
@@ -894,8 +894,8 @@ paths:
   /routes:
     get:
       summary: List Routes
-      description: Returns a paginated list of routes
-      operationId: list-routes
+      description: 'Returns a paginated list of routes. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-routes'
+      operationId: list-all-routes
       tags:
         - Route
       parameters:
@@ -986,7 +986,7 @@ paths:
                     next: 'http://localhost:8001/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Route
-      description: Create new route entity
+      description: 'Create new route entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-route'
       operationId: create-route
       tags:
         - Route
@@ -1116,7 +1116,7 @@ paths:
                       - critical
                     service:
                       id: a9daa3ba-8186-4a0d-96e8-00d80ce7240b
-  /routes/{route_name_or_id}:
+  '/routes/{route_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -1126,8 +1126,8 @@ paths:
         description: 'The unique identifier or the name of the Route to view, modify, or delete.'
     get:
       summary: View Route
-      description: Returns specified route details
-      operationId: view-route
+      description: 'Returns specified route details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-1'
+      operationId: retrieve-route
       tags:
         - Route
       responses:
@@ -1167,7 +1167,7 @@ paths:
                       id: d35165e2-d03e-461a-bdeb-dad0a112abfe
     put:
       summary: Create or Update Route
-      description: Create or Update Route
+      description: 'Create or Update Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route'
       operationId: create-or-update-route
       tags:
         - Route
@@ -1350,7 +1350,7 @@ paths:
       responses:
         '204':
           description: No Content
-  /services/{service_name_or_id}/routes:
+  '/services/{service_name_or_id}/routes':
     parameters:
       - schema:
           type: string
@@ -1512,7 +1512,7 @@ paths:
                       - low-priority
                     service:
                       id: d35165e2-d03e-461a-bdeb-dad0a112abfe
-  /services/{service_name_or_id}/routes/{route_name_or_id}:
+  '/services/{service_name_or_id}/routes/{route_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -1752,7 +1752,7 @@ paths:
       responses:
         '204':
           description: No Content
-  /plugins/{plugin_id}/route:
+  '/plugins/{plugin_id}/route':
     parameters:
       - schema:
           type: string
@@ -2066,7 +2066,7 @@ paths:
                     - low-priority
       tags:
         - Consumer
-  /consumers/{consumer_name_or_id}:
+  '/consumers/{consumer_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -2158,14 +2158,14 @@ paths:
         '204':
           description: No Content
       operationId: delete-consumer
-  /plugins/{plugin_name_or_id}/consumer:
+  '/plugins/{plugin_name_or_id}/consumer':
     parameters:
       - schema:
           type: string
         name: plugin_name_or_id
         in: path
         required: true
-        description: 'The unique identifier or the name of the Plugin to view or modify its Consumer.'
+        description: The unique identifier or the name of the Plugin to view or modify its Consumer.
     get:
       summary: View Consumer associated to specific plugin
       description: Returns specified consumer details associated to specific plugin
@@ -2398,7 +2398,7 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /plugins/{plugin_name_or_id}:
+  '/plugins/{plugin_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -2570,7 +2570,7 @@ paths:
         '204':
           description: No Content
       operationId: delete-plugin
-  /services/{service_name_or_id}/plugins:
+  '/services/{service_name_or_id}/plugins':
     parameters:
       - schema:
           type: string
@@ -2698,7 +2698,7 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /services/{service_name_or_id}/plugins/{plugin_name_or_id}:
+  '/services/{service_name_or_id}/plugins/{plugin_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -2711,7 +2711,7 @@ paths:
         name: plugin_name_or_id
         in: path
         required: true
-        description: The unique identifier or the name of the Plugin to view, modify, or delete.
+        description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
     get:
       summary: View Plugin to the specified route
       description: Returns specified plugin details to the specified route
@@ -2876,7 +2876,7 @@ paths:
       responses:
         '204':
           description: No Content
-  /routes/{route_name_or_id}/plugins:
+  '/routes/{route_name_or_id}/plugins':
     parameters:
       - schema:
           type: string
@@ -3004,7 +3004,7 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /routes/{route_name_or_id}/plugins/{plugin_name_or_id}:
+  '/routes/{route_name_or_id}/plugins/{plugin_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -3017,7 +3017,7 @@ paths:
         name: plugin_name_or_id
         in: path
         required: true
-        description: The unique identifier or the name of the Plugin to view, modify, or delete.
+        description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
     get:
       summary: View Plugin to the specified route
       description: Returns specified plugin details to the specified route
@@ -3182,7 +3182,7 @@ paths:
       responses:
         '204':
           description: No Content
-  /consumers/{consumer_name_or_id}/plugins:
+  '/consumers/{consumer_name_or_id}/plugins':
     parameters:
       - schema:
           type: string
@@ -3310,7 +3310,7 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /consumers/{consumer_name_or_id}/plugins/{plugin_name_or_id}:
+  '/consumers/{consumer_name_or_id}/plugins/{plugin_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -3323,7 +3323,7 @@ paths:
         name: plugin_name_or_id
         in: path
         required: true
-        description: The unique identifier or the name of the Plugin to view, modify, or delete.
+        description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
     get:
       summary: View Plugin to the specified consumer
       description: Returns specified plugin details to the specified consumer
@@ -3577,7 +3577,7 @@ paths:
                   tags:
                     - user-level
                     - low-priority
-  /certificates/{certificate_name_or_id}:
+  '/certificates/{certificate_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -3705,7 +3705,7 @@ paths:
       responses:
         '204':
           description: No Content
-  /upstreams/{upstream_name_or_id}/client_certificate:
+  '/upstreams/{upstream_name_or_id}/client_certificate':
     parameters:
       - schema:
           type: string
@@ -3926,7 +3926,7 @@ paths:
                       - low-priority
                     certificate:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
-  /snis/{sni_name_or_id}:
+  '/snis/{sni_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -4060,14 +4060,14 @@ paths:
       responses:
         '204':
           description: No Content
-  /certificates/{certificate_name_or_id}/snis:
+  '/certificates/{certificate_name_or_id}/snis':
     parameters:
       - schema:
           type: string
         name: certificate_name_or_id
         in: path
         required: true
-        description: 'The unique identifier or the name of the Certificate.'
+        description: The unique identifier or the name of the Certificate.
     get:
       summary: List SNIs associated to a specific certificate
       description: Returns a paginated list of SNIs associated to a specific certificate
@@ -4160,14 +4160,14 @@ paths:
                       - low-priority
                     certificate:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
-  /certificates/{certificate_name_or_id}/snis/{sni_name_or_id}:
+  '/certificates/{certificate_name_or_id}/snis/{sni_name_or_id}':
     parameters:
       - schema:
           type: string
         name: certificate_name_or_id
         in: path
         required: true
-        description: 'The unique identifier or the name of the Certificate.'
+        description: The unique identifier or the name of the Certificate.
       - schema:
           type: string
         name: sni_name_or_id
@@ -4579,7 +4579,7 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /upstreams/{upstream_name_or_id}:
+  '/upstreams/{upstream_name_or_id}':
     parameters:
       - schema:
           type: string
@@ -4665,14 +4665,14 @@ paths:
       responses:
         '204':
           description: No Content
-  /certificates/{certificate_name_or_id}/upstreams:
+  '/certificates/{certificate_name_or_id}/upstreams':
     parameters:
       - schema:
           type: string
         name: certificate_name_or_id
         in: path
         required: true
-        description: 'The unique identifier or the name of the Certificate.'
+        description: The unique identifier or the name of the Certificate.
     get:
       summary: List Upstreams to a specific certificate
       description: Paginated list of Upstreams to a specific certificate
@@ -4951,14 +4951,14 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-  /certificates/{certificate_name_or_id}/upstreams/{upstream_name_or_id}:
+  '/certificates/{certificate_name_or_id}/upstreams/{upstream_name_or_id}':
     parameters:
       - schema:
           type: string
         name: certificate_name_or_id
         in: path
         required: true
-        description: 'The unique identifier or the name of the Certificate.'
+        description: The unique identifier or the name of the Certificate.
       - schema:
           type: string
         name: upstream_name_or_id
@@ -5043,14 +5043,14 @@ paths:
       responses:
         '204':
           description: No Content
-  /upstreams/{upstream_host_or_id}/targets:
+  '/upstreams/{upstream_host_or_id}/targets':
     parameters:
       - schema:
           type: string
         name: upstream_host_or_id
         in: path
         required: true
-        description: The unique identifier or the host:port attribute of the Upstream whose Targets.'    
+        description: 'The unique identifier or the host:port attribute of the Upstream whose Targets.'''
     get:
       summary: List Upstream Targets
       description: Returns paginated list of upstream targets
@@ -5106,7 +5106,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpstreamTargetRequest'
-  /upstreams/{upstream_name_or_id}/targets/{target_host_or_id}:
+  '/upstreams/{upstream_name_or_id}/targets/{target_host_or_id}':
     parameters:
       - name: upstream_name_or_id
         description: The unique identifier or the name of the upstream for which to delete the target.
@@ -5122,7 +5122,7 @@ paths:
           type: string
     delete:
       summary: Disable a target in the load balancer.
-      description: Disable a target in the load balancer. Under the hood, this method creates a new entry for the given target definition with a `weight` of `0`.
+      description: 'Disable a target in the load balancer. Under the hood, this method creates a new entry for the given target definition with a `weight` of `0`.'
       operationId: delete-target-by-upstream
       tags:
         - Upstream Target
@@ -6156,7 +6156,7 @@ components:
                 - critical
               certificate:
                 id: d26761d5-83a4-4f24-ac6c-cff276f2b79c
-          next: 'http://localhost:8001/snis?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'            
+          next: 'http://localhost:8001/snis?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     Upstream:
       title: Upstream Entity
       type: object
