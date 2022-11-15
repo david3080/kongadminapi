@@ -13,6 +13,7 @@
 - HTTPメソッドは、GET、POST、PUT、PATCH、DELETEの順
 - OAS1ファイル上ではpathのURIは重複できないためKongオフィシャルドキュメントのパス順ではなく、操作対象のオブジェクトごとに整理しています
 - OAS内のタグはオブジェクト名もしくは2つのオブジェクト名の組み合わせで作成しています
+- 上記の考え方は[KongAdminAPI.pdf](./KongAdminAPI.pdf)にまとめています。
 
 # Kong GW OSS V3 + PostgreSQLのdocker-compose.yml
 
@@ -34,3 +35,6 @@ PostgreSQLのボリュームを削除して開始したい場合は下記のコ�
 ```
 $ docker volume rm kongadminapi_kong-db-data
 ```
+
+### やりたいことメモ
+- [Stoplight Elementsデモサイト](https://elements-demo.stoplight.io/#/)を参考に複数のOASファイルから選択を可能にする
