@@ -10,12 +10,11 @@ info:
   contact:
     url: 'https://github.com/Kong/kong'
     name: Kong
-  version: 3.1.0
+  version: 1.0.0
   title: Kong Admin API
   license:
     url: 'https://github.com/Kong/kong/blob/master/LICENSE'
     name: Apache 2.0
-  summary: Kong RESTful Admin API for administration purposes.
 servers:
   - url: 'http://localhost:8001'
     description: 8001 is the default port on which the Admin API listens.
