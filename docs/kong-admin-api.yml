@@ -25,7 +25,7 @@ paths:
     get:
       summary: List Services
       description: 'Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services'
-      operationId: list-services
+      operationId: 1-1_list-services
       tags:
         - Service
       parameters:
@@ -93,7 +93,7 @@ paths:
     post:
       summary: Create Service
       description: 'Create new service entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service'
-      operationId: create-service
+      operationId: 1-2_create-service
       tags:
         - Service
       requestBody:
@@ -145,7 +145,7 @@ paths:
     get:
       summary: View Service
       description: 'Returns specified service details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-1'
-      operationId: retrieve-service
+      operationId: 1-3_retrieve-service
       tags:
         - Service
       responses:
@@ -176,7 +176,7 @@ paths:
     put:
       summary: Create or Update Service
       description: 'Create or Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service'
-      operationId: create-or-update-service
+      operationId: 1-4_create-or-update-service
       tags:
         - Service
       responses:
@@ -244,7 +244,7 @@ paths:
     patch:
       summary: Update Service
       description: 'Update Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-1'
-      operationId: update-service
+      operationId: 1-5_update-service
       tags:
         - Service
       responses:
@@ -296,7 +296,7 @@ paths:
     delete:
       summary: Delete Service
       description: 'Delete Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-1'
-      operationId: delete-service
+      operationId: 1-6_delete-service
       tags:
         - Service
       responses:
@@ -313,7 +313,7 @@ paths:
     get:
       summary: List Services associated to a specific Certificate
       description: 'Returns paginated list of services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services-associated-to-a-specific-certificate'
-      operationId: list-services-associated-to-a-specific-certificate
+      operationId: 1-7_list-services-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
@@ -348,7 +348,7 @@ paths:
     post:
       summary: Create Service associated to a specific Certificate
       description: 'Create new service entity associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service-associated-to-a-specific-certificate'
-      operationId: create-service-associated-to-a-specific-certificate
+      operationId: 1-8_create-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       requestBody:
@@ -406,7 +406,7 @@ paths:
     get:
       summary: View Service associated to a specific Certificate
       description: 'Returns services associated to specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-certificate'
-      operationId: view-service-by-certificate
+      operationId: 1-9_view-service-by-certificate
       tags:
         - Certificate Service
       responses:
@@ -439,7 +439,7 @@ paths:
     put:
       summary: Create or Update Service for this Certificate
       description: 'Create or Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-certificate'
-      operationId: create-or-update-service-associated-to-a-specific-certificate
+      operationId: 1-10_create-or-update-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
@@ -511,7 +511,7 @@ paths:
     patch:
       summary: Update Service
       description: 'Update Service by Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-certificate'
-      operationId: update-service-associated-to-a-specific-certificate
+      operationId: 1-11_update-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
@@ -563,7 +563,7 @@ paths:
     delete:
       summary: Delete Service by Certificate name / id
       description: 'Delete Service by Certificate name/id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-service-associated-to-a-specific-certificate'
-      operationId: delete-service-associated-to-a-specific-certificate
+      operationId: 1-12_delete-service-associated-to-a-specific-certificate
       tags:
         - Certificate Service
       responses:
@@ -580,7 +580,7 @@ paths:
     get:
       summary: View Service associated to a specific Route
       description: 'Returns service associated to specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-route'
-      operationId: retrieve-service-associated-to-a-specific-route
+      operationId: 1-13_retrieve-service-associated-to-a-specific-route
       tags:
         - Route Service
       responses:
@@ -614,7 +614,7 @@ paths:
     put:
       summary: Create or Update Service for this Route
       description: 'Create or Update Service by Route. See https://docs.konghq.com/gateway/latest/admin-api/#create-or-update-service-associated-to-a-specific-route'
-      operationId: create-or-update-service-associated-to-a-specific-route
+      operationId: 1-14_create-or-update-service-associated-to-a-specific-route
       tags:
         - Route Service
       requestBody:
@@ -682,7 +682,7 @@ paths:
     patch:
       summary: Update Service for this Route
       description: 'Update Service by Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-route'
-      operationId: update-service-associated-to-a-specific-route
+      operationId: 1-15_update-service-associated-to-a-specific-route
       tags:
         - Route Service
       responses:
@@ -742,7 +742,7 @@ paths:
     get:
       summary: View Service associated to a specific Plugin
       description: 'Returns paginated list of services associated to specific plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-associated-to-a-specific-plugin'
-      operationId: retrieve-route-associated-to-a-specific-plugin
+      operationId: 1-16_retrieve-route-associated-to-a-specific-plugin
       tags:
         - Plugin Service
       responses:
@@ -773,7 +773,7 @@ paths:
     put:
       summary: Create or Update Service for this Plugin
       description: 'Create or Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route-associated-to-a-specific-plugin'
-      operationId: create-or-update-route-associated-to-a-specific-plugin
+      operationId: 1-17_create-or-update-route-associated-to-a-specific-plugin
       tags:
         - Plugin Service
       responses:
@@ -841,7 +841,7 @@ paths:
     patch:
       summary: Update Service for this Plugin
       description: 'Update Service by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin'
-      operationId: update-service-associated-to-a-specific-plugin
+      operationId: 1-18_update-service-associated-to-a-specific-plugin
       tags:
         - Plugin Service
       responses:
@@ -894,7 +894,7 @@ paths:
     get:
       summary: List Routes
       description: 'Returns a paginated list of routes. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-routes'
-      operationId: list-all-routes
+      operationId: 2-1_list-all-routes
       tags:
         - Route
       parameters:
@@ -986,7 +986,7 @@ paths:
     post:
       summary: Create Route
       description: 'Create new route entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-route'
-      operationId: create-route
+      operationId: 2-2_create-route
       tags:
         - Route
       requestBody:
@@ -1126,7 +1126,7 @@ paths:
     get:
       summary: View Route
       description: 'Returns specified route details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-1'
-      operationId: retrieve-route
+      operationId: 2-3_retrieve-route
       tags:
         - Route
       responses:
@@ -1167,7 +1167,7 @@ paths:
     put:
       summary: Create or Update Route
       description: 'Create or Update Route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route'
-      operationId: create-or-update-route
+      operationId: 2-4_create-or-update-route
       tags:
         - Route
       requestBody:
@@ -1272,7 +1272,7 @@ paths:
     patch:
       summary: Update Route
       description: Update Route
-      operationId: update-route
+      operationId: 2-5_update-route
       tags:
         - Route
       requestBody:
@@ -1343,7 +1343,7 @@ paths:
     delete:
       summary: Delete Route
       description: Delete Route
-      operationId: delete-route
+      operationId: 2-6_delete-route
       tags:
         - Route
       responses:
@@ -1359,8 +1359,8 @@ paths:
         description: 'The unique identifier or the name of the Service to view, modify, or delete.'
     get:
       summary: List Routes for specified Service Name / Id
-      description: Returns a paginated list of routes for specified service id
-      operationId: list-routes-by-service-name-or-id
+      description: 'Returns a paginated list of routes for specified service id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-routes-associated-to-a-specific-service'
+      operationId: 2-7_list-routes-associated-to-a-specific-service
       tags:
         - Service Route
       parameters:
@@ -1451,8 +1451,8 @@ paths:
                     next: 'http://localhost:8001/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Route associated to specific Service
-      description: Create new route entity
-      operationId: create-route-by-service
+      description: 'Create new route entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-route-associated-to-a-specific-service'
+      operationId: 2-8_create-route-associated-to-a-specific-service
       tags:
         - Service Route
       requestBody:
@@ -1527,8 +1527,8 @@ paths:
         description: 'The unique identifier or the name of the Route to view, modify, or delete.'
     get:
       summary: View Route associated with specified Service
-      description: Returns specified route details
-      operationId: view-route-by-service
+      description: 'Returns specified route details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-associated-to-a-specific-service'
+      operationId: 2-9_retrieve-route-associated-to-a-specific-service
       tags:
         - Service Route
       responses:
@@ -1568,8 +1568,8 @@ paths:
                       id: d35165e2-d03e-461a-bdeb-dad0a112abfe
     put:
       summary: Create or Update Route by Service
-      description: Create or Update Route by Service
-      operationId: create-or-update-route-by-service
+      description: 'Create or Update Route by Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route-associated-to-a-specific-service'
+      operationId: 2-10_create-or-update-route-associated-to-a-specific-service
       tags:
         - Service Route
       requestBody:
@@ -1673,8 +1673,8 @@ paths:
                       id: d35165e2-d03e-461a-bdeb-dad0a112abfe
     patch:
       summary: Update Route by Service
-      description: Update Route by Service
-      operationId: update-route-by-service
+      description: 'Update Route by Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-route-associated-to-a-specific-service'
+      operationId: 2-11_update-route-associated-to-a-specific-service
       tags:
         - Service Route
       requestBody:
@@ -1744,8 +1744,8 @@ paths:
                       id: d35165e2-d03e-461a-bdeb-dad0a112abfe
     delete:
       summary: Delete Route associated to specified Service
-      description: Delete Route associated to specified Service
-      operationId: delete-route-by-service
+      description: 'Delete Route associated to specified Service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-route-associated-to-a-specific-service'
+      operationId: 2-12_delete-route-associated-to-a-specific-service
       tags:
         - Service Route
       responses:
@@ -1761,8 +1761,8 @@ paths:
         description: The unique identifier or the name of the Plugin to view or modify route.
     get:
       summary: View Route associated with specified Plugin
-      description: Returns specified route details
-      operationId: view-route-by-plugin
+      description: 'Returns specified route details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-associated-to-a-specific-plugin'
+      operationId: 2-13_retrieve-route-associated-to-a-specific-plugin
       tags:
         - Plugin Route
       responses:
@@ -1802,8 +1802,8 @@ paths:
                       id: d35165e2-d03e-461a-bdeb-dad0a112abfe
     put:
       summary: Create or Update Route by Plugin
-      description: Create or Update Route by Plugin
-      operationId: create-or-update-route-by-plugin
+      description: 'Create or Update Route by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route-associated-to-a-specific-plugin'
+      operationId: 2-14_create-or-update-route-associated-to-a-specific-plugin
       tags:
         - Plugin Route
       requestBody:
@@ -1907,8 +1907,8 @@ paths:
                       id: d35165e2-d03e-461a-bdeb-dad0a112abfe
     patch:
       summary: Update Route by Plugin
-      description: Update Route by Plugin
-      operationId: update-route-by-plugin
+      description: 'Update Route by Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-route-associated-to-a-specific-plugin'
+      operationId: 2-15_update-route-associated-to-a-specific-plugin
       tags:
         - Plugin Route
       requestBody:
@@ -2027,8 +2027,8 @@ paths:
           in: query
           name: tags
           description: 'List of tags to filter by. Comma separated. Or clause denoted by slash (example/admin) example or admin. Maximum of 5 operations per request (, or /).'
-      operationId: list-consumers
-      description: Returns a paginated list of consumers
+      operationId: 3-1_list-all-consumers
+      description: 'Returns a paginated list of consumers. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-consumers'
     post:
       summary: Create Consumer
       responses:
@@ -2048,8 +2048,8 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      operationId: create-consumer
-      description: Create new consumer entity
+      operationId: 3-2_create-consumer
+      description: 'Create new consumer entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-consumer'
       requestBody:
         content:
           application/json:
@@ -2094,12 +2094,27 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      operationId: view-consumer
-      description: Returns specified consumer details
+      operationId: 3-3_retrieve-consumer
+      description: 'Returns specified consumer details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-consumer-1'
     put:
       summary: Create or Update Consumer
+      description: 'Create or Update Consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-consumer'
+      operationId: 3-4_create-or-update-consumer
       tags:
         - Consumer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerRequest'
+            examples:
+              Request Body:
+                value:
+                  username: my-username
+                  custom_id: my-custom-id
+                  tags:
+                    - user-level
+                    - low-priority
       responses:
         '200':
           description: Consumer Updated
@@ -2133,8 +2148,12 @@ paths:
                     tags:
                       - user-level
                       - low-priority
-      description: Create or Update Consumer
-      operationId: create-or-update-consumer
+    patch:
+      summary: Update Consumer
+      description: 'Create or Update Consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-consumer-1'
+      operationId: 3-5_update-consumer
+      tags:
+        - Consumer
       requestBody:
         content:
           application/json:
@@ -2148,15 +2167,32 @@ paths:
                   tags:
                     - user-level
                     - low-priority
+      responses:
+        '200':
+          description: Consumer Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+              examples:
+                Response Body:
+                  value:
+                    id: 127dfc88-ed57-45bf-b77a-a9d3a152ad31
+                    created_at: 1422386534
+                    username: my-username
+                    custom_id: my-custom-id
+                    tags:
+                      - user-level
+                      - low-priority
     delete:
       summary: Delete Consumer
-      description: Delete Consumer
+      description: 'Delete Consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-consumer-1'
       tags:
         - Consumer
       responses:
         '204':
           description: No Content
-      operationId: delete-consumer
+      operationId: 3-6_delete-consumer
   '/plugins/{plugin_name_or_id}/consumer':
     parameters:
       - schema:
@@ -2167,8 +2203,8 @@ paths:
         description: The unique identifier or the name of the Plugin to view or modify its Consumer.
     get:
       summary: View Consumer associated to specific plugin
-      description: Returns specified consumer details associated to specific plugin
-      operationId: retrieve-consumer-associated-to-a-specific-plugin
+      description: 'Returns specified consumer details associated to specific plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-consumer-associated-to-a-specific-plugin'
+      operationId: 3-7_retrieve-consumer-associated-to-a-specific-plugin
       tags:
         - Plugin Consumer
       responses:
@@ -2190,8 +2226,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Consumer associated to specific plugin
-      description: Create or Update Consumer associated to specific plugin
-      operationId: create-or-update-consumer-associated-to-a-specific-plugin
+      description: 'Create or Update Consumer associated to specific plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-consumer-associated-to-a-specific-plugin'
+      operationId: 3-8_create-or-update-consumer-associated-to-a-specific-plugin
       tags:
         - Plugin Consumer
       requestBody:
@@ -2242,8 +2278,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Consumer associated to specific plugin
-      description: Update Consumer associated to specific plugin
-      operationId: update-consumer-associated-to-a-specific-plugin
+      description: 'Update Consumer associated to specific plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-consumer-associated-to-a-specific-plugin'
+      operationId: 3-9_update-consumer-associated-to-a-specific-plugin
       tags:
         - Plugin Consumer
       requestBody:
@@ -2279,8 +2315,8 @@ paths:
   /plugins:
     get:
       summary: List Plugins
-      description: Returns a paginated list of plugins
-      operationId: list-plugins
+      description: 'Returns a paginated list of plugins. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-plugins'
+      operationId: 4-1_list-all-plugins
       tags:
         - Plugin
       parameters:
@@ -2351,8 +2387,8 @@ paths:
                     next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Plugin
-      description: Create new plugin entity
-      operationId: create-plugin
+      description: 'Create new plugin entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin'
+      operationId: 4-2_create-plugin
       tags:
         - Plugin
       requestBody:
@@ -2407,8 +2443,8 @@ paths:
         description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
     get:
       summary: View Plugin
-      description: Returns specified plugin details
-      operationId: view-plugin
+      description: 'Returns specified plugin details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-1'
+      operationId: 4-3_retrieve-plugin
       tags:
         - Plugin
       responses:
@@ -2440,8 +2476,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Plugin
-      description: Create or Update Plugin
-      operationId: create-or-update-plugin
+      description: 'Create or Update Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin'
+      operationId: 4-4_create-or-update-plugin
       tags:
         - Plugin
       requestBody:
@@ -2514,8 +2550,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Plugin
-      description: Update Plugin
-      operationId: update-plugin
+      description: 'Update Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-1'
+      operationId: 4-5_update-plugin
       tags:
         - Plugin
       requestBody:
@@ -2562,13 +2598,13 @@ paths:
                       - low-priority
     delete:
       summary: Delete Plugin
-      description: Delete Plugin
+      description: 'Delete Plugin. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-1'
       tags:
         - Plugin
       responses:
         '204':
           description: No Content
-      operationId: delete-plugin
+      operationId: 4-6_delete-plugin
   '/services/{service_name_or_id}/plugins':
     parameters:
       - schema:
@@ -2579,8 +2615,8 @@ paths:
         description: The unique identifier or the name of the Service.
     get:
       summary: List Plugins associated to a specific service
-      description: Returns a paginated list of plugins associated to a specific service
-      operationId: list-plugins-associated-to-a-specific-service
+      description: 'Returns a paginated list of plugins associated to a specific service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-plugins-associated-to-a-specific-service'
+      operationId: 4-7_list-plugins-associated-to-a-specific-service
       tags:
         - Plugin
       parameters:
@@ -2651,8 +2687,8 @@ paths:
                     next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Plugin to a specific service
-      description: Create new plugin entity to a specific service
-      operationId: create-plugin-associated-to-a-specific-service
+      description: 'Create new plugin entity to a specific service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin-associated-to-a-specific-service'
+      operationId: 4-8_create-plugin-associated-to-a-specific-service
       tags:
         - Plugin
       requestBody:
@@ -2713,8 +2749,8 @@ paths:
         description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
     get:
       summary: View Plugin to the specified route
-      description: Returns specified plugin details to the specified route
-      operationId: retrieve-plugin-associated-to-a-specific-service
+      description: 'Returns specified plugin details to the specified route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-associated-to-a-specific-service'
+      operationId: 4-9_retrieve-plugin-associated-to-a-specific-service
       tags:
         - Plugin
       responses:
@@ -2746,8 +2782,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Plugin to the specified route
-      description: Create or Update Plugin to the specified route
-      operationId: create-or-update-plugin-associated-to-a-specific-service
+      description: 'Create or Update Plugin to the specified route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin-associated-to-a-specific-service'
+      operationId: 4-10_create-or-update-plugin-associated-to-a-specific-service
       tags:
         - Plugin
       requestBody:
@@ -2820,8 +2856,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Plugin
-      description: Update Plugin to a specific service
-      operationId: update-plugin-associated-to-a-specific-service
+      description: 'Update Plugin to a specific service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-associated-to-a-specific-service'
+      operationId: 4-11_update-plugin-associated-to-a-specific-service
       tags:
         - Plugin
       requestBody:
@@ -2868,8 +2904,8 @@ paths:
                       - low-priority
     delete:
       summary: Delete Plugin to a specific service
-      description: Delete Plugin to a specific service
-      operationId: delete-plugin-associated-to-a-specific-service
+      description: 'Delete Plugin to a specific service. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-service'
+      operationId: 4-12_delete-plugin-associated-to-a-specific-service
       tags:
         - Plugin
       responses:
@@ -2885,8 +2921,8 @@ paths:
         description: The unique identifier or the name of the Route.
     get:
       summary: List Plugins associated to a specific route
-      description: Returns a paginated list of plugins associated to a specific route
-      operationId: list-plugins-associated-to-a-specific-route
+      description: 'Returns a paginated list of plugins associated to a specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-plugins-associated-to-a-specific-route'
+      operationId: 4-13_list-plugins-associated-to-a-specific-route
       tags:
         - Plugin
       parameters:
@@ -2957,8 +2993,8 @@ paths:
                     next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Plugin to a specific route
-      description: Create new plugin entity to a specific route
-      operationId: create-plugin-associated-to-a-specific-route
+      description: 'Create new plugin entity to a specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin-associated-to-a-specific-route'
+      operationId: 4-14_create-plugin-associated-to-a-specific-route
       tags:
         - Plugin
       requestBody:
@@ -3019,8 +3055,8 @@ paths:
         description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
     get:
       summary: View Plugin to the specified route
-      description: Returns specified plugin details to the specified route
-      operationId: retrieve-plugin-associated-to-a-specific-route
+      description: 'Returns specified plugin details to the specified route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-associated-to-a-specific-route'
+      operationId: 4-15_retrieve-plugin-associated-to-a-specific-route
       tags:
         - Plugin
       responses:
@@ -3052,8 +3088,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Plugin to the specified route
-      description: Create or Update Plugin to the specified route
-      operationId: create-or-update-plugin-associated-to-a-specific-route
+      description: 'Create or Update Plugin to the specified route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin-associated-to-a-specific-route'
+      operationId: 4-16_create-or-update-plugin-associated-to-a-specific-route
       tags:
         - Plugin
       requestBody:
@@ -3126,8 +3162,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Plugin
-      description: Update Plugin to a specific route
-      operationId: update-plugin-associated-to-a-specific-route
+      description: 'Update Plugin to a specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-associated-to-a-specific-route'
+      operationId: 4-17_update-plugin-associated-to-a-specific-route
       tags:
         - Plugin
       requestBody:
@@ -3174,8 +3210,8 @@ paths:
                       - low-priority
     delete:
       summary: Delete Plugin to a specific route
-      description: Delete Plugin to a specific route
-      operationId: delete-plugin-associated-to-a-specific-route
+      description: 'Delete Plugin to a specific route. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-route'
+      operationId: 4-18_delete-plugin-associated-to-a-specific-route
       tags:
         - Plugin
       responses:
@@ -3191,8 +3227,8 @@ paths:
         description: The unique identifier or the name of the Consumer.
     get:
       summary: List Plugins associated to a specific consumer
-      description: Returns a paginated list of plugins associated to a specific consumer
-      operationId: list-plugins-associated-to-a-specific-consumer
+      description: 'Returns a paginated list of plugins associated to a specific consumer。See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-plugins-associated-to-a-specific-consumer'
+      operationId: 4-list-plugins-associated-to-a-specific-consumer
       tags:
         - Plugin
       parameters:
@@ -3263,8 +3299,8 @@ paths:
                     next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Plugin to a specific consumer
-      description: Create new plugin entity to a specific consumer
-      operationId: create-plugin-associated-to-a-specific-consumer
+      description: 'Create new plugin entity to a specific consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin-associated-to-a-specific-consumer'
+      operationId: 4-20_create-plugin-associated-to-a-specific-consumer
       tags:
         - Plugin
       requestBody:
@@ -3325,8 +3361,8 @@ paths:
         description: 'The unique identifier or the name of the Plugin to view, modify, or delete.'
     get:
       summary: View Plugin to the specified consumer
-      description: Returns specified plugin details to the specified consumer
-      operationId: retrieve-plugin-associated-to-a-specific-consumer
+      description: 'Returns specified plugin details to the specified consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-associated-to-a-specific-consumer'
+      operationId: 4-21_retrieve-plugin-associated-to-a-specific-consumer
       tags:
         - Plugin
       responses:
@@ -3358,8 +3394,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Plugin to the specified consumer
-      description: Create or Update Plugin to the specified consumer
-      operationId: create-or-update-plugin-associated-to-a-specific-consumer
+      description: 'Create or Update Plugin to the specified consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin-associated-to-a-specific-consumer'
+      operationId: 4-22_create-or-update-plugin-associated-to-a-specific-consumer
       tags:
         - Plugin
       requestBody:
@@ -3432,8 +3468,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Plugin
-      description: Update Plugin to a specific consumer
-      operationId: update-plugin-associated-to-a-specific-consumer
+      description: 'Update Plugin to a specific consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-associated-to-a-specific-consumer'
+      operationId: 4-23_update-plugin-associated-to-a-specific-consumer
       tags:
         - Plugin
       requestBody:
@@ -3480,8 +3516,8 @@ paths:
                       - low-priority
     delete:
       summary: Delete Plugin to a specific consumer
-      description: Delete Plugin to a specific consumer
-      operationId: delete-plugin-associated-to-a-specific-consumer
+      description: 'Delete Plugin to a specific consumer. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-consumer'
+      operationId: 4-24_delete-plugin-associated-to-a-specific-consumer
       tags:
         - Plugin
       responses:
@@ -3490,8 +3526,8 @@ paths:
   /certificates:
     get:
       summary: List Certificates
-      description: Returns a paginated list of certificates
-      operationId: list-certificates
+      description: 'Returns a paginated list of certificates. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-certificates'
+      operationId: 5-1_list-all-certificates
       tags:
         - Certificate
       parameters:
@@ -3542,8 +3578,8 @@ paths:
                     next: 'http://localhost:8001/certificates?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Certificate
-      description: Create new certificate entity
-      operationId: create-certificate
+      description: 'Create new certificate entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-certificate'
+      operationId: 5-2_create-certificate
       tags:
         - Certificate
       responses:
@@ -3586,8 +3622,8 @@ paths:
         description: 'The unique identifier or the name of the Certificate to view, modify, or delete.'
     get:
       summary: View Certificate
-      description: Returns specified certificate details
-      operationId: view-certificate
+      description: 'Returns specified certificate details. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-certificate-1'
+      operationId: 5-3_retrieve-certificate
       tags:
         - Certificate
       responses:
@@ -3609,8 +3645,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Certificate
-      description: Create or Update Certificate
-      operationId: create-or-update-certificate
+      description: 'Create or Update Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-certificate'
+      operationId: 5-4_create-or-update-certificate
       tags:
         - Certificate
       requestBody:
@@ -3661,8 +3697,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Certificate
-      description: Update Certificate
-      operationId: update-certificate
+      description: 'Update Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-certificate-1'
+      operationId: 5-5_update-certificate
       tags:
         - Certificate
       requestBody:
@@ -3697,8 +3733,8 @@ paths:
                       - low-priority
     delete:
       summary: Delete Certificate
-      description: Delete Certificate
-      operationId: delete-certificate
+      description: 'Delete Certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-certificate-1'
+      operationId: 5-6_delete-certificate
       tags:
         - Certificate
       responses:
@@ -3714,8 +3750,8 @@ paths:
         description: The unique identifier or the name of the upstream.
     get:
       summary: View Certificate associated to specific upstream
-      description: Returns specified certificate details associated to specific upstream
-      operationId: retrieve-certificate-associated-to-a-specific-upstream
+      description: 'Returns specified certificate details associated to specific upstream. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-certificate-associated-to-a-specific-upstream'
+      operationId: 5-7_retrieve-certificate-associated-to-a-specific-upstream
       tags:
         - Certificate
       responses:
@@ -3737,8 +3773,8 @@ paths:
                       - low-priority
     put:
       summary: Create or Update Certificate associated to specific upstream
-      description: Create or Update Certificate associated to specific upstream
-      operationId: create-or-update-certificate-associated-to-a-specific-upstream
+      description: 'Create or Update Certificate associated to specific upstream. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-certificate-associated-to-a-specific-upstream'
+      operationId: 5-8_create-or-update-certificate-associated-to-a-specific-upstream
       tags:
         - Certificate
       requestBody:
@@ -3789,8 +3825,8 @@ paths:
                       - low-priority
     patch:
       summary: Update Certificate associated to specific upstream
-      description: Update Certificate associated to specific upstream
-      operationId: update-certificate-associated-to-a-specific-upstream
+      description: 'Update Certificate associated to specific upstream. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-certificate-associated-to-a-specific-upstream'
+      operationId: 5-9_update-certificate-associated-to-a-specific-upstream
       tags:
         - Certificate
       requestBody:
@@ -3825,8 +3861,8 @@ paths:
                       - low-priority
     delete:
       summary: Delete Certificate associated to specific upstream
-      description: Delete Certificate associated to specific upstream
-      operationId: delete-certificate-associated-to-a-specific-upstream
+      description: 'Delete Certificate associated to specific upstream. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-certificate-associated-to-a-specific-upstream'
+      operationId: 5-10_delete-certificate-associated-to-a-specific-upstream
       tags:
         - Certificate
       responses:
@@ -3835,8 +3871,8 @@ paths:
   /snis:
     get:
       summary: List SNIs
-      description: Returns a paginated list of SNIs
-      operationId: list-snis
+      description: 'Returns a paginated list of SNIs. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-snis'
+      operationId: 6-1_list-all-snis
       tags:
         - SNI
       parameters:
@@ -3889,8 +3925,8 @@ paths:
                     next: 'http://localhost:8001/snis?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create SNI
-      description: Create new SNI entity
-      operationId: create-sni
+      description: 'Create new SNI entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-sni'
+      operationId: 6-2_create-sni
       tags:
         - SNI
       requestBody:
@@ -3937,8 +3973,8 @@ paths:
       tags:
         - SNI
       summary: View SNI
-      description: Retrieve specific SNI
-      operationId: view-sni
+      description: 'Retrieve specific SNI. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-sni-1'
+      operationId: 6-3_retrieve-sni
       responses:
         '200':
           description: SNI
@@ -3959,8 +3995,8 @@ paths:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
     put:
       summary: Create or Update SNI
-      description: Create or Update SNI
-      operationId: create-or-update-sni
+      description: 'Create or Update SNI. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-sni'
+      operationId: 6-4_create-or-update-sni
       tags:
         - SNI
       requestBody:
@@ -4014,8 +4050,8 @@ paths:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
     patch:
       summary: Update SNI
-      description: Update SNI
-      operationId: update-sni
+      description: 'Update SNI. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-sni-1'
+      operationId: 6-5_update-sni
       tags:
         - SNI
       requestBody:
@@ -4052,8 +4088,8 @@ paths:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
     delete:
       summary: Delete SNI
-      description: Delete SNI
-      operationId: delete-sni
+      description: 'Delete SNI. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-sni-1'
+      operationId: 6-6_delete-sni
       tags:
         - SNI
       responses:
@@ -4069,8 +4105,8 @@ paths:
         description: The unique identifier or the name of the Certificate.
     get:
       summary: List SNIs associated to a specific certificate
-      description: Returns a paginated list of SNIs associated to a specific certificate
-      operationId: list-snis-associated-to-a-specific-certificate
+      description: 'Returns a paginated list of SNIs associated to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-snis-associated-to-a-specific-certificate'
+      operationId: 6-7_list-snis-associated-to-a-specific-certificate
       tags:
         - SNI
       parameters:
@@ -4123,8 +4159,8 @@ paths:
                     next: 'http://localhost:8001/snis?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create SNI associated to a specific certificate
-      description: Create new SNI entity associated to a specific certificate
-      operationId: create-sni-associated-to-a-specific-certificate
+      description: 'Create new SNI entity associated to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-sni-associated-to-a-specific-certificate'
+      operationId: 6-8_create-sni-associated-to-a-specific-certificate
       tags:
         - SNI
       requestBody:
@@ -4177,8 +4213,8 @@ paths:
       tags:
         - SNI
       summary: View SNI to a specific certificate
-      description: Retrieve specific SNI to a specific certificate
-      operationId: retrieve-sni-associated-to-a-specific-certificate
+      description: 'Retrieve specific SNI to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-sni-associated-to-a-specific-certificate'
+      operationId: 6-9_retrieve-sni-associated-to-a-specific-certificate
       responses:
         '200':
           description: SNI
@@ -4199,8 +4235,8 @@ paths:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
     put:
       summary: Create or Update SNI to a specific certificate
-      description: Create or Update SNI to a specific certificate
-      operationId: create-or-update-sni-associated-to-a-specific-certificate
+      description: 'Create or Update SNI to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-sni-associated-to-a-specific-certificate'
+      operationId: 6-10_create-or-update-sni-associated-to-a-specific-certificate
       tags:
         - SNI
       requestBody:
@@ -4254,8 +4290,8 @@ paths:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
     patch:
       summary: Update SNI to a specific certificate
-      description: Update SNI to a specific certificate
-      operationId: update-sni-associated-to-a-specific-certificate
+      description: 'Update SNI to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-sni-associated-to-a-specific-certificate'
+      operationId: 6-11_update-sni-associated-to-a-specific-certificate
       tags:
         - SNI
       requestBody:
@@ -4292,8 +4328,8 @@ paths:
                       id: d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6
     delete:
       summary: Delete SNI to a specific certificate
-      description: Delete SNI to a specific certificate
-      operationId: delete-sni-associated-to-a-specific-certificate
+      description: 'Delete SNI to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-sni-associated-to-a-specific-certificate'
+      operationId: 6-12_delete-sni-associated-to-a-specific-certificate
       tags:
         - SNI
       responses:
@@ -4302,8 +4338,8 @@ paths:
   /upstreams:
     get:
       summary: List Upstreams
-      description: Paginated list of Upstreams
-      operationId: list-upstreams
+      description: 'Paginated list of Upstreams. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-upstreams'
+      operationId: 7-1_list-all-upstreams
       tags:
         - Upstream
       parameters:
@@ -4480,8 +4516,8 @@ paths:
                     next: 'http://localhost:8001/upstreams?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Upstream
-      description: Create new Upstream entity
-      operationId: create-upstream
+      description: 'Create new Upstream entity. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-upstream'
+      operationId: 7-2_create-upstream
       tags:
         - Upstream
       requestBody:
@@ -4588,8 +4624,8 @@ paths:
         description: The unique identifier or the name of the upstream.
     get:
       summary: View Upstream by Name / ID
-      description: Show individual upstream by name or id.
-      operationId: view-upstream
+      description: 'Show individual upstream by name or id. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-upstream-1'
+      operationId: 7-3_retrieve-upstream
       tags:
         - Upstream
       responses:
@@ -4601,8 +4637,8 @@ paths:
                 $ref: '#/components/schemas/Upstream'
     put:
       summary: Create Or Update Upstream
-      description: Method will either create or update depending on whether the upstream already exists or not.
-      operationId: create-or-update-upstream
+      description: 'Method will either create or update depending on whether the upstream already exists or not. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-upstream'
+      operationId: 7-4_create-or-update-upstream
       tags:
         - Upstream
       requestBody:
@@ -4632,8 +4668,8 @@ paths:
                 $ref: '#/components/schemas/Upstream'
     patch:
       summary: Update Upstream
-      description: Update Upstream
-      operationId: update-upstream
+      description: 'Update Upstream. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-upstream-1'
+      operationId: 7-5_update-upstream
       tags:
         - Upstream
       requestBody:
@@ -4657,8 +4693,8 @@ paths:
                 $ref: '#/components/schemas/Upstream'
     delete:
       summary: Delete Upstream
-      description: Delete Upstream
-      operationId: delete-upstream
+      description: 'Delete Upstream. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-upstream-1'
+      operationId: 7-6_delete-upstream
       tags:
         - Upstream
       responses:
@@ -4674,8 +4710,8 @@ paths:
         description: The unique identifier or the name of the Certificate.
     get:
       summary: List Upstreams to a specific certificate
-      description: Paginated list of Upstreams to a specific certificate
-      operationId: list-upstreams-associated-to-a-specific-certificate
+      description: 'Paginated list of Upstreams to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-upstreams-associated-to-a-specific-certificate'
+      operationId: 7-7_list-upstreams-associated-to-a-specific-certificate
       tags:
         - Upstream
       parameters:
@@ -4852,8 +4888,8 @@ paths:
                     next: 'http://localhost:8001/upstreams?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     post:
       summary: Create Upstream to a specific certificate
-      description: Create new Upstream entity to a specific certificate
-      operationId: create-upstream-associated-to-a-specific-certificate
+      description: 'Create new Upstream entity to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-upstream-associated-to-a-specific-certificate'
+      operationId: 7-8_create-upstream-associated-to-a-specific-certificate
       tags:
         - Upstream
       requestBody:
@@ -4966,8 +5002,8 @@ paths:
         description: The unique identifier or the name of the upstream.
     get:
       summary: View Upstream by Name / ID to a specific certificate
-      description: Show individual upstream by name or id to a specific certificate
-      operationId: retrieve-upstream-associated-to-a-specific-certificate
+      description: 'Show individual upstream by name or id to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-upstream-associated-to-a-specific-certificate'
+      operationId: 7-9_retrieve-upstream-associated-to-a-specific-certificate
       tags:
         - Upstream
       responses:
@@ -4979,8 +5015,8 @@ paths:
                 $ref: '#/components/schemas/Upstream'
     put:
       summary: Create Or Update Upstream to a specific certificate
-      description: Method will either create or update depending on whether the upstream already exists or not.
-      operationId: create-or-update-upstream-associated-to-a-specific-certificate
+      description: 'Method will either create or update depending on whether the upstream already exists or not. See https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-upstream-associated-to-a-specific-certificate'
+      operationId: 7-10_create-or-update-upstream-associated-to-a-specific-certificate
       tags:
         - Upstream
       requestBody:
@@ -5010,8 +5046,8 @@ paths:
                 $ref: '#/components/schemas/Upstream'
     patch:
       summary: Update Upstream to a specific certificate
-      description: Update Upstream to a specific certificate
-      operationId: update-upstream-associated-to-a-specific-certificate
+      description: 'Update Upstream to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#update-upstream-associated-to-a-specific-certificate'
+      operationId: 7-11_update-upstream-associated-to-a-specific-certificate
       tags:
         - Upstream
       requestBody:
@@ -5035,8 +5071,8 @@ paths:
                 $ref: '#/components/schemas/Upstream'
     delete:
       summary: Delete Upstream to a specific certificate
-      description: Delete Upstream to a specific certificate
-      operationId: delete-upstream-associated-to-a-specific-certificate
+      description: 'Delete Upstream to a specific certificate. See https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-upstream-associated-to-a-specific-certificate'
+      operationId: 7-12_delete-upstream-associated-to-a-specific-certificate
       tags:
         - Upstream
       responses:
