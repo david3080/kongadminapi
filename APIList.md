@@ -70,3 +70,24 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[3-9_update-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-consumer-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/consumer|
 </div>
 </details>
+
+<details><summary>Pluginオブジェクト</summary><div>
+
+|Name|Method|Path|
+|:-|:-|:-|
+|[4-1_list-all-plugins](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-plugins)|GET|/plugins|
+|[4-2_create-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin)|POST|/plugins|
+|[4-3_retrieve-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-1)|GET|/plugins/{plugin id}|
+|[4-4_create-or-update-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin)|PUT|/plugins/{plugin id}|
+|[4-5_update-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-1)|PATCH|/plugins/{plugin id}|
+|[4-6_delete-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-1)|DELETE|/plugins/{plugin id}|
+|[4-7_list-plugins-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-plugins-associated-to-a-specific-service)|GET|/services/{service name or id}/plugins|
+|[4-8_create-plugin-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin-associated-to-a-specific-service)|POST|/services/{service name or id}/plugins|
+|[4-9_retrieve-plugin-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-associated-to-a-specific-service)|GET|/services/{service name or id}/plugins/{plugin id}|
+|[4-10_create-or-update-plugin-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin-associated-to-a-specific-service)|PUT|/services/{service name or id}/plugins/{plugin id}|
+|[4-11_update-plugin-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-associated-to-a-specific-service)|PATCH|/services/{service name or id}/plugins/{plugin id}|
+|[4-12_delete-plugin-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-service)|DELETE|/services/{service name or id}/plugins/{plugin id}|
+|[4-13_list-plugins-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-plugins-associated-to-a-specific-route)|GET|/routes/{route name or id}/plugins|
+|[4-14_create-plugin-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin-associated-to-a-specific-route)|POST|/routes/{route name or id}/plugins|
+</div>
+</details>
