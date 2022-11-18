@@ -1,6 +1,8 @@
-# Open API Spec V3.1 of Admin Kong OSS V3
+# OpenAPI Specification of Kong Gateway OSS Admin API
 
-[Kong Admin APIドキュメント](https://david3080.github.io/kongadminapi)
+本プロジェクトでは、Nginxベースの高速なAPI Gatewayとして有名なKongの設定を行うAdmin APIを、OpenAPI仕様のドキュメントとして整備し、そのドキュメントをブラウザ表示して、try it機能を使いAPIの実行を行い、Kong Gatewayの設定方法を学ぶコンテンツを整備します。
+
+[Kong Admin API](https://david3080.github.io/kongadminapi)
 
 以下を参考に作成しています
 - [Kong GWのオフィシャルGithubサイトに置いてある中途半端なOASファイル](https://github.com/Kong/kong/blob/master/kong-admin-api.yml)
@@ -37,18 +39,30 @@ $ docker volume rm kongadminapi_kong-db-data
 ```
 
 # Kong Admin API Demo
-[mockbinサンプルを実行できるKong Admin API OAS](https://david3080.github.io/kongadminapi/mockbin.html)からtry itを実行しながら下記のデモシナリオを実行します
+[OASドキュメント](https://david3080.github.io/kongadminapi/mockbin.html)のtry it機能を使って下記のデモシナリオを実行します
 
-## ① mockbin　APIをサービス登録する
+## ① mockbin　APIのサービス登録
+
+[mockbinサイト](https://mockbin.org/request)は、HTMLやJSON、YAML、XMLといった形式でリクエストヘッダやボディをそのままエコーして返してくれるテスト用のAPIサービスです. 例えば、このURLにブラウザからアクセスするとHTML形式のコンテンツがレスポンスされますが、ヘッダに「accept: "application/json"」を設定するとJSON形式でレスポンスされます。そのため、Kongのサービスに「accept: "application/json"」ヘッダを付与するプラグインを指定して、REST APIとして機能する設定を行います.
+
 1. [サービスの登録](https://david3080.github.io/kongadminapi/mockbin.html#/operations/1-2_create-service)
 2. [ルートの登録](https://david3080.github.io/kongadminapi/mockbin.html#/operations/2-8_create-route-associated-to-a-specific-service)
-3. [request-transformerプラグインを設定](https://david3080.github.io/kongadminapi/mockbin.html#/operations/4-8_create-plugin-associated-to-a-specific-service)し、ヘッダー"Accept: application/json"を追加.
-4. "localhost:8000/mockbin"を実行してmockbinからJSONが帰ってくることを確認し、bodyのheders配列に「accept: "application/json"」が帰ってきていることを確認.
+3. [request-transformerプラグインの設定](https://david3080.github.io/kongadminapi/mockbin.html#/operations/4-8_create-plugin-associated-to-a-specific-service)
+4. Kong経由のmockbin API実行
+
+    下記のURLにアクセスし、レスポンスボディのJSON内のheders配列に「accept: "application/json"」が含まれていることを確認
+
+    http://localhost:8000/mockbin
 
 ## (TODO)② mockbin　APIをターゲットに登録し、アップストリーム経由で実行する
 ## (TODO)③ consumerとauthを登録し、Basic認証でmockbin APIを実行する
 ## (TODO)④ rate-limitingプラグインを設定する
 ## (TODO)⑤ certificateとsniを設定し、httpsでmockbin APIを実行する
 
-# やりたいことメモ
-- [Stoplight Elementsデモサイト](https://elements-demo.stoplight.io/#/)を参考に複数のOASファイルから選択を可能にする
+### 参考資料
+- [KongのオフィシャルドキュメントのAdmin APIドキュメント](https://docs.konghq.com/gateway/3.0.x/admin-api)
+- [Kongのオフィシャルドキュメントの元になっているLUAファイル](https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua)
+- [KongのオフィシャルGithubサイトに置いてある中途半端なOASファイル](https://github.com/Kong/kong/blob/master/kong-admin-api.yml)
+
+# TODO
+- [Stoplight Elementsデモサイト](https://elements-demo.stoplight.io/#/)を参考に複数のOASファイルを選択可能にする

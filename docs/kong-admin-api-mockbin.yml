@@ -104,6 +104,12 @@ paths:
             schema:
               $ref: '#/components/schemas/ServiceRequest'
             examples:
+              mockbin:
+                value:
+                  name: mockbin-service
+                  url: 'https://mockbin.org/request'
+                  tags:
+                    - mockbin
               Request Body:
                 value:
                   name: my-service
@@ -111,12 +117,6 @@ paths:
                   tags:
                     - user-level
                     - low-priority
-              mockbin:
-                value:
-                  name: mockbin-service
-                  url: 'https://mockbin.org/request'
-                  tags:
-                    - mockbin
       responses:
         '201':
           description: Service created
@@ -1469,6 +1469,19 @@ paths:
             schema:
               $ref: '#/components/schemas/RouteRequest'
             examples:
+              mockbin:
+                value:
+                  name: mockbin-route
+                  methods:
+                    - GET
+                    - POST
+                    - PUT
+                    - PATCH
+                    - DELETE
+                  paths:
+                    - /mockbin
+                  tags:
+                    - mockbin
               Request Body:
                 value:
                   name: my-route
@@ -1481,20 +1494,6 @@ paths:
                   paths:
                     - /foo
                     - /bar
-                  tags:
-                    - user-level
-                    - low-priority
-              mockbin:
-                value:
-                  name: mockbin-route
-                  methods:
-                    - GET
-                    - POST
-                    - PUT
-                    - PATCH
-                    - DELETE
-                  paths:
-                    - /mockbin
                   tags:
                     - user-level
                     - low-priority
@@ -2720,6 +2719,15 @@ paths:
             schema:
               $ref: '#/components/schemas/PluginRequest'
             examples:
+              mockbin:
+                value:
+                  name: request-transformer
+                  config:
+                    replace:
+                      headers:
+                        - 'Accept: application/json'
+                  tags:
+                    - mockbin
               Request Body:
                 value:
                   name: rate-limiting
@@ -2729,13 +2737,6 @@ paths:
                   tags:
                     - user-level
                     - low-priority
-              mockbin:
-                value:
-                  name: request-transformer
-                  config:
-                    replace:
-                      headers:
-                        - 'Accept: application/json'
       responses:
         '201':
           description: Plugin created
