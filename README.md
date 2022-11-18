@@ -42,9 +42,7 @@ $ docker volume rm kongadminapi_kong-db-data
 ## ① mockbin　APIをサービス登録する
 1. [サービスの登録](https://david3080.github.io/kongadminapi/mockbin.html#/operations/1-2_create-service)
 2. [ルートの登録](https://david3080.github.io/kongadminapi/mockbin.html#/operations/2-8_create-route-associated-to-a-specific-service)
-
 3. [request-transformerプラグインを設定](https://david3080.github.io/kongadminapi/mockbin.html#/operations/4-8_create-plugin-associated-to-a-specific-service)し、ヘッダー"Accept: application/json"を追加.
-
 4. "localhost:8000/mockbin"を実行してmockbinからJSONが帰ってくることを確認し、bodyのheders配列に「accept: "application/json"」が帰ってきていることを確認.
 
 ## (TODO)② mockbin　APIをターゲットに登録し、アップストリーム経由で実行する
