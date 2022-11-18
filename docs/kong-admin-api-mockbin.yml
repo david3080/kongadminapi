@@ -116,8 +116,7 @@ paths:
                   name: mockbin-service
                   url: 'https://mockbin.org/request'
                   tags:
-                    - user-level
-                    - low-priority
+                    - mockbin
       responses:
         '201':
           description: Service created
@@ -1485,7 +1484,7 @@ paths:
                   tags:
                     - user-level
                     - low-priority
-              mockbin-route:
+              mockbin:
                 value:
                   name: mockbin-route
                   methods:
@@ -1499,6 +1498,7 @@ paths:
                   tags:
                     - user-level
                     - low-priority
+        description: ''
       responses:
         '201':
           description: Route created
@@ -2729,6 +2729,13 @@ paths:
                   tags:
                     - user-level
                     - low-priority
+              mockbin:
+                value:
+                  name: request-transformer
+                  config:
+                    replace:
+                      headers:
+                        - 'Accept: application/json'
       responses:
         '201':
           description: Plugin created

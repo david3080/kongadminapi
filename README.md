@@ -36,5 +36,19 @@ PostgreSQLのボリュームを削除して開始したい場合は下記のコ�
 $ docker volume rm kongadminapi_kong-db-data
 ```
 
-### やりたいことメモ
+# Kong Admin API Demo
+[mockbinサンプルを実行できるKong Admin API OAS](https://david3080.github.io/kongadminapi/mockbin.html)からtry itを実行しながら下記のデモシナリオを実行します
+
+## 1. mockbin　APIをサービス登録する
+1. サービスの登録(urlに"https://mockbin.org/request"を登録. "1-2_create-service"の"mockbin"をtry-itで実行.)
+2. ルートの登録(pathsに"/mockbin"を登録. "2-8_create-route-associated-to-a-specific-service"の"mockbin"をtry-itで実行.)
+3. サービスに「request-transformer」プラグインを設定(ヘッダー"Accept: application/json"を追加. "4-8_create-plugin-associated-to-a-specific-service"の"mockbin"をtry-itで実行.)
+4. "http://localhost:8000/mockbin"を実行してmockbinからJSONが帰ってくることを確認し、bodyのheders配列に「accept: "application/json"」が帰ってきていることを確認.
+
+## (TODO)2. mockbin　APIをターゲットに登録し、アップストリーム経由で実行する
+## (TODO)3. consumerとauthを登録し、Basic認証でmockbin APIを実行する
+## (TODO)4. rate-limitingプラグインを設定する
+## (TODO)5. certificateとsniを設定し、httpsでmockbin APIを実行する
+
+# やりたいことメモ
 - [Stoplight Elementsデモサイト](https://elements-demo.stoplight.io/#/)を参考に複数のOASファイルから選択を可能にする
