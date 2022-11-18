@@ -47,10 +47,10 @@ $ docker volume rm kongadminapi_kong-db-data
 
 4. "localhost:8000/mockbin"を実行してmockbinからJSONが帰ってくることを確認し、bodyのheders配列に「accept: "application/json"」が帰ってきていることを確認.
 
-## (TODO)2. mockbin　APIをターゲットに登録し、アップストリーム経由で実行する
-## (TODO)3. consumerとauthを登録し、Basic認証でmockbin APIを実行する
-## (TODO)4. rate-limitingプラグインを設定する
-## (TODO)5. certificateとsniを設定し、httpsでmockbin APIを実行する
+## (TODO)② mockbin　APIをターゲットに登録し、アップストリーム経由で実行する
+## (TODO)③ consumerとauthを登録し、Basic認証でmockbin APIを実行する
+## (TODO)④ rate-limitingプラグインを設定する
+## (TODO)⑤ certificateとsniを設定し、httpsでmockbin APIを実行する
 
 # やりたいことメモ
 - [Stoplight Elementsデモサイト](https://elements-demo.stoplight.io/#/)を参考に複数のOASファイルから選択を可能にする
