@@ -59,7 +59,7 @@ $ docker volume rm kongadminapi_kong-db-data
 ## (TODO)④ rate-limitingプラグインを設定する
 ## (TODO)⑤ certificateとsniを設定し、httpsでmockbin APIを実行する
 
-### 参考資料
+# 参考資料
 - [KongのオフィシャルドキュメントのAdmin APIドキュメント](https://docs.konghq.com/gateway/3.0.x/admin-api)
 - [Kongのオフィシャルドキュメントの元になっているLUAファイル](https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua)
 - [KongのオフィシャルGithubサイトに置いてある中途半端なOASファイル](https://github.com/Kong/kong/blob/master/kong-admin-api.yml)
