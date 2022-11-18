@@ -39,10 +39,12 @@ $ docker volume rm kongadminapi_kong-db-data
 # Kong Admin API Demo
 [mockbinサンプルを実行できるKong Admin API OAS](https://david3080.github.io/kongadminapi/mockbin.html)からtry itを実行しながら下記のデモシナリオを実行します
 
-## 1. mockbin　APIをサービス登録する
-1. サービスの登録(urlに"mockbin.org/request"を登録. "1-2_create-service"の"mockbin"をtry-itで実行.)
-2. ルートの登録(pathsに"/mockbin"を登録. "2-8_create-route-associated-to-a-specific-service"の"mockbin"をtry-itで実行.)
-3. サービスに「request-transformer」プラグインを設定(ヘッダー"Accept: application/json"を追加. "4-8_create-plugin-associated-to-a-specific-service"の"mockbin"をtry-itで実行.)
+## ① mockbin　APIをサービス登録する
+1. [サービスの登録](https://david3080.github.io/kongadminapi/mockbin.html#/operations/1-2_create-service)
+2. [ルートの登録](https://david3080.github.io/kongadminapi/mockbin.html#/operations/2-8_create-route-associated-to-a-specific-service)
+
+3. [request-transformerプラグインを設定](https://david3080.github.io/kongadminapi/mockbin.html#/operations/4-8_create-plugin-associated-to-a-specific-service)し、ヘッダー"Accept: application/json"を追加.
+
 4. "localhost:8000/mockbin"を実行してmockbinからJSONが帰ってくることを確認し、bodyのheders配列に「accept: "application/json"」が帰ってきていることを確認.
 
 ## (TODO)2. mockbin　APIをターゲットに登録し、アップストリーム経由で実行する
