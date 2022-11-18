@@ -156,3 +156,8 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[7-12_delete-upstream-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-upstream-associated-to-a-specific-certificate)|DELETE|/certificates/{certificate id}/upstreams/{upstream name or id}|
 </div>
 </details>
+<br>
+
+## メモ
+- [Kongのマイグレーション用LUAファイル](https://github.com/Kong/kong/blob/master/kong/db/migrations/core/000_base.lua)のテーブル定義では、pluginsテーブルのconsumer_id/service_id/route_idとtargetsテーブルのupstream_idに、外部キー制約としてON DELETE CASCADEオプションが設定されているため、Consumer/Service/Routeオブジェクト削除時にはそれに紐づくPluginが削除され、Upstreamオブジェクト削除時にはそれに紐づくTargetが削除されます。
+- また、子オブジェクトに必ず一つ紐付けられる親オブジェクト（routeに紐づくservice、pluginに紐づくservice/route/consumer）については親単独の削除は当然であるができないため、Admin APIにもそのようなパスは存在しません。
