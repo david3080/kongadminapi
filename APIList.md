@@ -54,3 +54,19 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[2-15_update-route-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-route-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/route|
 </div>
 </details>
+
+<details><summary>Consumerオブジェクト</summary><div>
+
+|Name|Method|Path|
+|:-|:-|:-|
+|[3-1_list-all-consumers](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-consumers)|GET|/consumers|
+|[3-2_create-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-consumer)|POST|/consumers|
+|[3-3_retrieve-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-consumer-1)|GET|/consumers/{consumer username or id}|
+|[3-4_create-or-update-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-consumer)|PUT|/consumers/{consumer username or id}|
+|[3-5_update-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-consumer-1)|PATCH|/consumers/{consumer username or id}|
+|[3-6_delete-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-consumer-1)|DELETE|/consumers/{consumer username or id}|
+|[3-7_retrieve-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-consumer-associated-to-a-specific-plugin)|GET|/plugins/{plugin id}/consumer|
+|[3-8_create-or-update-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-consumer-associated-to-a-specific-plugin)|PUT|/plugins/{plugin id}/consumer|
+|[3-9_create-or-update-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-consumer-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/consumer|
+</div>
+</details>
