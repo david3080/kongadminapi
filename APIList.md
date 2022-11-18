@@ -10,7 +10,7 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 
 ## Serviceオブジェクト
 
-|operationId|Method|Path|
+|Name|Method|Path|
 |:-|:-|:-|
 |[1-1_list-all-services](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-services)|GET|/services|
 |[1-2_create-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-service)|POST|/services|
