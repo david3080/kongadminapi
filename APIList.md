@@ -32,3 +32,25 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[1-18_update-service-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/service|
 </div>
 </details>
+
+<details><summary>Routeオブジェクト</summary><div>
+
+|Name|Method|Path|
+|:-|:-|:-|
+|[2-1_list-all-routes](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-routes)|GET|/routes|
+|[2-2_create-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-route)|POST|/routes|
+|[2-3_retrieve-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-1)|GET|/routes/{route name or id}|
+|[2-4_create-or-update-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route)|PUT|/routes/{route name or id}|
+|[2-5_update-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-route-1)|PATCH|/routes/{route name or id}|
+|[2-6_delete-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-route-1)|DELETE|/routes/{route name or id}|
+|[2-7_list-routes-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-routes-associated-to-a-specific-service)|GET|/services/{service name or id}/routes|
+|[2-8_create-route-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-route-associated-to-a-specific-service)|POST|/services/{service name or id}/routes|
+|[2-9_retrieve-route-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-associated-to-a-specific-service)|GET|/services/{service name or id}/routes/{route name or id}|
+|[2-10_create-or-update-route-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route-associated-to-a-specific-service)|PUT|/services/{service name or id}/routes/{route name or id}|
+|[2-11_update-route-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-route-associated-to-a-specific-service)|PATCH|/services/{service name or id}/routes/{route name or id}|
+|[2-12_delete-route-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-route-associated-to-a-specific-service)|DELETE|/services/{service name or id}/routes/{route name or id}|
+|[2-13_retrieve-route-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-route-associated-to-a-specific-plugin)|GET|/plugins/{plugin id}/route|
+|[2-14_create-or-update-route-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-route-associated-to-a-specific-plugin)|PUT|/plugins/{plugin id}/route|
+|[2-15_update-route-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-route-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/route|
+</div>
+</details>
