@@ -123,7 +123,18 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 
 |Name|Method|Path|
 |:-|:-|:-|
-||||
+|[6-1_list-all-snis](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-snis)|GET|/snis|
+|[6-2_create-sni](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-sni)|POST|/snis|
+|[6-3_retrieve-sni](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-sni-1)|GET|/snis/{sni name or id}|
+|[6-4_create-or-update-sni](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-sni)|PUT|/snis/{sni name or id}|
+|[6-5_update-sni](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-sni-1)|PATCH|/snis/{sni name or id}|
+|[6-6_delete-sni](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-sni-1)|DELETE|/snis/{sni name or id}|
+|[6-7_list-snis-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-snis-associated-to-a-specific-certificate)|GET|/certificates/{certificate name or id}/snis|
+|[6-8_create-sni-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-sni-associated-to-a-specific-certificate)|POST|/certificates/{certificate name or id}/snis|
+|[6-9_retrieve-sni-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-sni-associated-to-a-specific-certificate)|GET|/certificates/{certificate id}/snis/{sni name or id}|
+|[6-10_create-or-update-sni-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-sni-associated-to-a-specific-certificate)|PUT|/certificates/{certificate id}/snis/{sni name or id}|
+|[6-11_update-sni-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-sni-associated-to-a-specific-certificate)|PATCH|/certificates/{certificate id}/snis/{sni name or id}|
+|[6-12_delete-sni-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-sni-associated-to-a-specific-certificate)|DELETE|/certificates/{certificate id}/snis/{sni name or id}|
 </div>
 </details>
 
