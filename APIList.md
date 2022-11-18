@@ -101,3 +101,36 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[4-24_delete-plugin-associated-to-a-specific-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-consumer)|DELETE|/consumers/{consumer username or id}/plugins/{plugin id}|
 </div>
 </details>
+
+<details><summary>Certificateオブジェクト</summary><div>
+
+|Name|Method|Path|
+|:-|:-|:-|
+|[5-1_list-all-certificates](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-certificates)|GET|/certificates|
+|[5-2_create-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-certificate)|POST|/certificates|
+|[5-3_retrieve-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-certificate-1)|GET|/certificates/{certificate id}|
+|[5-4_create-or-update-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-certificate)|PUT|/certificates/{certificate id}|
+|[5-5_update-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-certificate-1)|PATCH|/certificates/{certificate id}|
+|[5-6_delete-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-certificate-1)|DELETE|/certificates/{certificate id}|
+|[5-7_retrieve-certificate-associated-to-a-specific-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-certificate-associated-to-a-specific-upstream)|GET|/upstreams/{upstream name or id}/client_certificate|
+|[5-8_create-or-update-certificate-associated-to-a-specific-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-certificate-associated-to-a-specific-upstream)|PUT|/upstreams/{upstream name or id}/client_certificate|
+|[5-9_update-certificate-associated-to-a-specific-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-certificate-associated-to-a-specific-upstream)|PATCH|/upstreams/{upstream name or id}/client_certificate|
+|[5-10_delete-certificate-associated-to-a-specific-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-certificate-associated-to-a-specific-upstream)|DELETE|/upstreams/{upstream name or id}/client_certificate|
+</div>
+</details>
+
+<details><summary>SNIオブジェクト</summary><div>
+
+|Name|Method|Path|
+|:-|:-|:-|
+||||
+</div>
+</details>
+
+<details><summary>Upstreamオブジェクト</summary><div>
+
+|Name|Method|Path|
+|:-|:-|:-|
+||||
+</div>
+</details>
