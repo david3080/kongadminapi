@@ -8,7 +8,7 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 
 一方、Kong Admin APIは、このテーブルをうまくCRUD操作するようAPI化されており、それらはオブジェクトごとにまとめることができるので、以下にオブジェクトごとのKong Admin APIのメソッドとパス、公式ドキュメントへのリンクを表であらわします。
 
-## Serviceオブジェクト
+<details><summary>Serviceオブジェクト</summary><div>
 
 |Name|Method|Path|
 |:-|:-|:-|
@@ -30,3 +30,5 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[1-16_retrieve-service-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-service-associated-to-a-specific-plugin)|GET|/plugins/{plugin id}/service|
 |[1-17_create-or-update-service-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-service-associated-to-a-specific-plugin)|PUT|/plugins/{plugin id}/service|
 |[1-18_update-service-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-service-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/service|
+</div>
+</details>

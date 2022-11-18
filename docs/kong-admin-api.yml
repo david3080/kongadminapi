@@ -25,7 +25,7 @@ paths:
     get:
       summary: List Services
       description: 'Returns a list of services. See https://docs.konghq.com/gateway/3.0.x/admin-api/#list-services'
-      operationId: 1-1_list-services
+      operationId: 1-1_list-all-services
       tags:
         - Service
       parameters:
