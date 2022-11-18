@@ -142,6 +142,17 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 
 |Name|Method|Path|
 |:-|:-|:-|
-||||
+|[7-1_list-all-upstreams](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-all-upstreams)|GET|/upstreams|
+|[7-2_create-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-upstream)|POST|/upstreams|
+|[7-3_retrieve-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-upstream-1)|GET|/upstreams/{upstream name or id}|
+|[7-4_create-or-update-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-upstream)|PUT|/upstreams/{upstream name or id}|
+|[7-5_update-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-upstream-1)|PATCH|/upstreams/{upstream name or id}|
+|[7-6_delete-upstream](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-upstream-1)|DELETE|/upstreams/{upstream name or id}|
+|[7-7_list-upstreams-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-upstreams-associated-to-a-specific-certificate)|GET|/certificates/{certificate name or id}/upstreams|
+|[7-8_create-upstream-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-upstream-associated-to-a-specific-certificate)|POST|/certificates/{certificate name or id}/upstreams|
+|[7-9_retrieve-upstream-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-upstream-associated-to-a-specific-certificate)|GET|/certificates/{certificate id}/upstreams/{upstream name or id}|
+|[7-10_create-or-update-upstream-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-upstream-associated-to-a-specific-certificate)|PUT|/certificates/{certificate id}/upstreams/{upstream name or id}|
+|[7-11_update-upstream-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-upstream-associated-to-a-specific-certificate)|PATCH|/certificates/{certificate id}/upstreams/{upstream name or id}|
+|[7-12_delete-upstream-associated-to-a-specific-certificate](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-upstream-associated-to-a-specific-certificate)|DELETE|/certificates/{certificate id}/upstreams/{upstream name or id}|
 </div>
 </details>
