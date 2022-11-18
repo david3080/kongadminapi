@@ -13,7 +13,7 @@
 - HTTPメソッドは、GET、POST、PUT、PATCH、DELETEの順
 - OAS1ファイル上ではpathのURIは重複できないためKongオフィシャルドキュメントのパス順ではなく、操作対象のオブジェクトごとに整理しています
 - OAS内のタグはオブジェクト名もしくは2つのオブジェクト名の組み合わせで作成しています
-- 上記の考え方は[KongAdminAPI.pdf](./KongAdminAPI.pdf)にまとめています。
+- 上記の考え方は[Kong Admin APIのオブジェクトごとの整理](./APIList.md)にまとめています。
 
 # Kong GW OSS V3 + PostgreSQLのdocker-compose.yml
 
