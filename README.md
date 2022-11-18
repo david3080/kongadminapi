@@ -1,4 +1,4 @@
-# OpenAPI Specification of Kong Gateway OSS Admin API
+# OpenAPI Spec of Kong Admin API
 
 本プロジェクトでは、Nginxベースの高速なAPI Gatewayとして有名なKongの設定を行うAdmin APIを、OpenAPI仕様のドキュメントとして整備し、そのドキュメントをブラウザ表示して、try it機能を使いAPIの実行を行い、Kong Gatewayの設定方法を学ぶコンテンツを整備します。
 
