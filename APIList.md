@@ -89,5 +89,15 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[4-12_delete-plugin-associated-to-a-specific-service](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-service)|DELETE|/services/{service name or id}/plugins/{plugin id}|
 |[4-13_list-plugins-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-plugins-associated-to-a-specific-route)|GET|/routes/{route name or id}/plugins|
 |[4-14_create-plugin-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin-associated-to-a-specific-route)|POST|/routes/{route name or id}/plugins|
+|[4-15_retrieve-plugin-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-associated-to-a-specific-route)|GET|/routes/{route name or id}/plugins/{plugin id}|
+|[4-16_create-or-update-plugin-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin-associated-to-a-specific-route)|PUT|/routes/{route name or id}/plugins/{plugin id}|
+|[4-17_update-plugin-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-associated-to-a-specific-route)|PATCH|/routes/{route name or id}/plugins/{plugin id}|
+|[4-18_delete-plugin-associated-to-a-specific-route](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-route)|DELETE|/routes/{route name or id}/plugins/{plugin id}|
+|[4-19_list-plugins-associated-to-a-specific-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#list-plugins-associated-to-a-specific-consumer)|GET|/consumers/{consumer name or id}/plugins|
+|[4-20_create-plugin-associated-to-a-specific-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-plugin-associated-to-a-specific-consumer)|POST|/consumers/{consumer name or id}/plugins|
+|[4-21_retrieve-plugin-associated-to-a-specific-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-plugin-associated-to-a-specific-consumer)|GET|/consumers/{consumer username or id}/plugins/{plugin id}|
+|[4-22_create-or-update-plugin-associated-to-a-specific-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-plugin-associated-to-a-specific-consumer)|PUT|/consumers/{consumer username or id}/plugins/{plugin id}|
+|[4-23_update-plugin-associated-to-a-specific-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-plugin-associated-to-a-specific-consumer)|PATCH|/consumers/{consumer username or id}/plugins/{plugin id}|
+|[4-24_delete-plugin-associated-to-a-specific-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-plugin-associated-to-a-specific-consumer)|DELETE|/consumers/{consumer username or id}/plugins/{plugin id}|
 </div>
 </details>
