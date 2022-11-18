@@ -67,6 +67,6 @@ Kong Gateway(OSS)の設定情報は、下のER図に表現されるオブジェ�
 |[3-6_delete-consumer](https://docs.konghq.com/gateway/3.0.x/admin-api/#delete-consumer-1)|DELETE|/consumers/{consumer username or id}|
 |[3-7_retrieve-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#retrieve-consumer-associated-to-a-specific-plugin)|GET|/plugins/{plugin id}/consumer|
 |[3-8_create-or-update-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#create-or-update-consumer-associated-to-a-specific-plugin)|PUT|/plugins/{plugin id}/consumer|
-|[3-9_create-or-update-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-consumer-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/consumer|
+|[3-9_update-consumer-associated-to-a-specific-plugin](https://docs.konghq.com/gateway/3.0.x/admin-api/#update-consumer-associated-to-a-specific-plugin)|PATCH|/plugins/{plugin id}/consumer|
 </div>
 </details>
