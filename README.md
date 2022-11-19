@@ -4,11 +4,6 @@
 
 [Kong Admin API](https://david3080.github.io/kongadminapi)
 
-以下を参考に作成しています
-- [Kong GWのオフィシャルGithubサイトに置いてある中途半端なOASファイル](https://github.com/Kong/kong/blob/master/kong-admin-api.yml)
-- [Kongのオフィシャルドキュメント上のAdmin APIサイト](https://docs.konghq.com/gateway/3.0.x/admin-api)
-- [ドキュメントの元LUAファイル](https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua)
-
 下記のルールで整理しています。
 - 対象オブジェクトは、Service、Route、Consumer、Plugin、Certificate、SNI、Upstreamの順
 (※ [Kongにおける証明書に関するブログ](https://konghq.com/blog/mutual-tls-api-gateway)によるとKong OSSではクライアント認証を行うmTLSプラグインが提供されていないため、クライアント証明書の検証するCA Certificateオブジェクトは使わないため対象から外しています）
