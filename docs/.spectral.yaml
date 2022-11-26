@@ -1,0 +1,20 @@
+extends:
+  - ./zalando.yml
+functions:
+  - oasTagDefined
+rules:
+  operation-tag-defined:
+    description: Operationタグはグローバルタグに定義する必要があります.
+    recommended: true
+    given: $
+    then:
+      function: oasTagDefined
+  must-have-info-description:
+    message: Missing `info.description`.
+    description: MUST contain API meta information [218]
+    documentationUrl: https://opensource.zalando.com/restful-api-guidelines/#218
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
