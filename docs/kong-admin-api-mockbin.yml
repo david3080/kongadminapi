@@ -4556,6 +4556,12 @@ paths:
             schema:
               $ref: '#/components/schemas/UpstreamRequest'
             examples:
+              mockbin:
+                value:
+                  name: mockbin-upstream
+                  tags:
+                    - user-level
+                    - low-priority
               Request Body:
                 value:
                   name: my-upstream

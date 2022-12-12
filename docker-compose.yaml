@@ -15,7 +15,7 @@ services:
     volumes:
       - "kong-db-data:/var/lib/postgresql/data"
   kong-bootstrap:
-    image: kong:3
+    image: kong/kong-gateway:3.1.0.0
 #    image: kong:2.8.1
     hostname: kong-bootstrap
     container_name: kong-bootstrap
@@ -27,11 +27,11 @@ services:
       KONG_PG_DATABASE: "kong"
       KONG_PG_USER: "kong"
       KONG_PG_PASSWORD: "kong"
-    command: "kong migrations bootstrap"
+    command: "kong migrations up"
     restart: 'on-failure'
     platform: linux/x86_64
   kong:
-    image: kong:3
+    image: kong/kong-gateway:3.1.0.0
 #    image: kong:2.8.1
     restart: always
     hostname: kong
